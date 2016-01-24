@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "backend",
+    "packageName": "org.transandalus.backend",
+    "packageFolder": "org/transandalus/backend",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "7154c7ef48e5e2c1f37dfb6bfab6465cf5eba973",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
