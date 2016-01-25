@@ -28,6 +28,8 @@ angular.module('backendApp')
  */
     .constant('LANGUAGES', [
         'en', 'fr'
+        ,'es'
+        ,'ca'
         // jhipster-needle-006 - JHipster will add new languages here
     ]
 );
