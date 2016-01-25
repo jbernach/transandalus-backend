@@ -527,7 +527,7 @@
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                     <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/backend</url>
+                    <url>jdbc:mysql://localhost:3306/</url>
                     <defaultSchemaName>transandalus</defaultSchemaName>
                     <username>backend</username>
                     <password>backend</password>
