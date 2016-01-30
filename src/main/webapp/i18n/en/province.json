@@ -1,0 +1,25 @@
+{
+    "backendApp": {
+        "province" : {
+            "home": {
+                "title": "Provinces",
+                "createLabel": "Create a new Province",
+                "createOrEditLabel": "Create or edit a Province",
+                "search": "Search for Province"
+            },
+            "created": "A new Province is created with identifier {{ param }}",
+            "updated": "A Province is updated with identifier {{ param }}",
+            "deleted": "A Province is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Province {{ id }}?"
+            },
+            "detail": {
+                "title": "Province"
+            },
+            "code": "Code",
+            "name": "Name",
+            "description": "Description",
+            "image": "Image"
+        }
+    }
+}
