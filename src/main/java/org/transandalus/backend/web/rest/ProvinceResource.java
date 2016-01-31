@@ -72,10 +72,18 @@ public class ProvinceResource {
             return createProvince(province);
         }
         
-        province.setI18nName(I18n.setTranslationText(province.getI18nName(), province.getName()));
-        province.setI18nDescription(I18n.setTranslationText(province.getI18nDescription(), province.getDescription()));
+        Province result = provinceRepository.findOne(province.getId());
         
-        Province result = provinceRepository.save(province);
+        result.setCode(province.getCode());
+        result.setI18nName(I18n.setTranslationText(result.getI18nName(), province.getName()));
+        result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), province.getDescription()));
+        result.setImage(province.getImage());
+        result.setImageContentType(province.getImageContentType());
+        result.setName(province.getName());
+        result.setDescription(province.getDescription());
+        
+        result = provinceRepository.save(result);
+        
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("province", province.getId().toString()))
             .body(result);

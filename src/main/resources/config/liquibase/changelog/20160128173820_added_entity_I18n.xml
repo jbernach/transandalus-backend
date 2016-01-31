@@ -42,33 +42,12 @@
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
-        <createTable tableName="locale">
-            <column name="id_locale" type="varchar(5)" autoIncrement="false">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            
-            <column name="label" type="varchar(50)">
-            	<constraints nullable="false"/>
-            </column>
-            
-            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
-        </createTable>
-        
         <addForeignKeyConstraint baseColumnNames="id_i18n"
                                  baseTableName="translation"
                                  constraintName="fk_i18n"
                                  referencedColumnNames="id_i18n"
                                  referencedTableName="i18n"/>
-                                 
-        <addForeignKeyConstraint baseColumnNames="id_locale"
-                                 baseTableName="translation"
-                                 constraintName="fk_locale"
-                                 referencedColumnNames="id_locale"
-                                 referencedTableName="locale"/>
+                                
      	
-     	<loadData encoding="UTF-8"
-                  file="config/liquibase/locales.csv"
-                  separator=";"
-                  tableName="locale"/>
     </changeSet>
 </databaseChangeLog>

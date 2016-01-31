@@ -71,7 +71,15 @@ public class I18n implements Serializable {
 		
 		Translation t = getTranslations().get(locale);
 		
-		if(t != null) text = t.getTxContent();
+		if(t != null){
+			text = t.getTxContent();
+		}else{
+			// return the first translation if no one was found 
+			t = getTranslations().values().stream().findFirst().orElse(null);
+			if(t != null){
+				text = t.getTxContent();
+			}
+		}
 		
 		return text;
 	}
