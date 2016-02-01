@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "backend",
+        "title": "Administración TransAndalus",
         "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
         "menu": {
             "home": "Inicio",
@@ -115,5 +115,5 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "pie de página"
+    "footer": "Copyright © TransAndalus 2016"
 }

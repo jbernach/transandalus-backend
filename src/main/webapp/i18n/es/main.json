@@ -1,19 +1,15 @@
 {
     "main": {
-        "title": "¡Bienvenido, Java Hipster!",
-        "subtitle": "Esta es su página de inicio",
+        "title": "Administración de TransAndalus",
+        "subtitle": "",
         "logged": {
             "message": "Está conectado como \"{{username}}\"."
         },
-        "question": "Si tiene preguntas sobre JHipster:",
+        "question": "Si tienes alguna duda, consulta a <a href='mailto:jbernach@gmail.com'>Bernaco</a>.",
         "link": {
-            "homepage": "Página de inicio de JHipster",
-            "stackoverflow": "JHipster en Stack Overflow",
-            "bugtracker": "JHipster seguimiento de errores",
-            "chat": "Sala de chat pública de JHipster",
-            "contact": "contacto @java_hipster en Twitter"
-        },
-        "like": "Si te gusta JHipster, danos una estrella en",
-        "github": "Github"
-    }
+            "homepage": "Página de inicio de TransAndalus",
+            "bugtracker": "Seguimiento de errores",
+            "contact": "contacto @jtransandalus en Twitter"
+        }
+      }
 }
