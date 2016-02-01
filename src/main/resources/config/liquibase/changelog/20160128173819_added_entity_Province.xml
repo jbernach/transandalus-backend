@@ -46,6 +46,7 @@
                                  constraintName="fk_name"
                                  referencedColumnNames="id_i18n"
                                  referencedTableName="i18n"/>
+                                 
         <addForeignKeyConstraint baseColumnNames="i18n_description"
                                  baseTableName="province"
                                  constraintName="fk_description"
