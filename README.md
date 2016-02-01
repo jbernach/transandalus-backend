@@ -1,6 +1,12 @@
-# backend
+# TransAndalus backend
+
+Web application for the administration of the data of [http://www.transandalus.org](TransAndalus) new web site.
+
+# Technology used
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
+
+# Build
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
@@ -28,7 +34,7 @@ Add the `-h` flag on any command to see how you can use it. For example, `bower 
 
 # Building for production
 
-To optimize the backend client for production, run:
+To optimize the TransAndalus backend site for production, run:
 
     mvn -Pprod clean package
 
@@ -55,7 +61,7 @@ To setup this project in Jenkins, use the following configuration:
 
 * Project name: `backend`
 * Source Code Management
-    * Git Repository: `git@github.com:xxxx/backend.git`
+    * Git Repository: `user@github.com:xxxx/transandalus-backend.git`
     * Branches to build: `*/master`
     * Additional Behaviours: `Wipe out repository & force clone`
 * Build Triggers
