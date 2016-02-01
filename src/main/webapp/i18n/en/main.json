@@ -5,7 +5,7 @@
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
-        "question": "If you have any question, ask <a href='mailto:jbernach@gmail.com'>Bernaco</a>.,
+        "question": "If you have any question, ask <a href='mailto:jbernach@gmail.com'>Bernaco</a>.",
         "link": {
             "homepage": "TransAndalus homepage",
             "bugtracker": "Bg tracker",
