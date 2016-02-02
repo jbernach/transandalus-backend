@@ -29,7 +29,7 @@ public class Translation implements Serializable{
 	@Column(name = "id_locale",nullable = false)
 	private String idLocale; 
 	
-	@Column(name = "tx_content")
+	@Column(name = "tx_content", columnDefinition="clob")
 	private String txContent;
 	
 	public Long getId() {
