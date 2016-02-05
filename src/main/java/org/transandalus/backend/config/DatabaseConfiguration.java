@@ -44,6 +44,15 @@ public class DatabaseConfiguration {
     @ConditionalOnExpression("#{!environment.acceptsProfiles('cloud') && !environment.acceptsProfiles('heroku')}")
     public DataSource dataSource(DataSourceProperties dataSourceProperties, JHipsterProperties jHipsterProperties) {
         log.debug("Configuring Datasource");
+        
+        if(env.acceptsProfiles("aws")){
+        	String url = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=utf8", env.getProperty("RDS_HOSTNAME"), env.getProperty("RDS_PORT"),env.getProperty("RDS_DB_NAME"));
+        	log.info("Configuring with 'aws' profile. Overriding DataSource config file properties with environment variables. URL used: " + url);
+        	dataSourceProperties.setUrl(url);
+        	dataSourceProperties.setUsername(env.getProperty("RDS_USERNAME"));
+        	dataSourceProperties.setPassword(env.getProperty("RDS_PASSWORD"));
+        }
+        
         if (dataSourceProperties.getUrl() == null) {
             log.error("Your database connection pool configuration is incorrect! The application" +
                     " cannot start. Please check your Spring profile, current profiles are: {}",
@@ -51,6 +60,7 @@ public class DatabaseConfiguration {
 
             throw new ApplicationContextException("Database connection pool is not configured correctly");
         }
+        
         HikariConfig config = new HikariConfig();
         config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
         config.addDataSourceProperty("url", dataSourceProperties.getUrl());

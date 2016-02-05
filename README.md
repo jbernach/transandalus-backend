@@ -45,6 +45,14 @@ To ensure everything worked, run:
 
     java -jar target/*.war --spring.profiles.active=prod
 
+# Deployment to AWS ElasticBeanStack
+If you plan to deploy your app to AWS:
+
+- create a RDS MySQL source
+- package the app and upload the original.war file
+- in Tomtcat configuration, pass the following environment property: 'spring.profiles.active' with value 'prod,aws'
+- the MySQL connection properties in application-prod.yml are ignored and retrieved automatically.  
+
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
 # Testing
