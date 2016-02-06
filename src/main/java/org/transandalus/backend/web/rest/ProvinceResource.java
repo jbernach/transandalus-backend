@@ -105,8 +105,7 @@ public class ProvinceResource {
         log.debug("REST request to get a page of Provinces");
         Page<Province> page = provinceRepository.findAll(pageable); 
         page.getContent().stream().forEach(p -> {
-        	p.setName(I18n.getTranslationText(p.getI18nName()));
-        	p.setDescription(I18n.getTranslationText(p.getI18nDescription()));
+        	p.resolveTraduction();
         });
         
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/provinces");
@@ -125,8 +124,7 @@ public class ProvinceResource {
         log.debug("REST request to get Province : {}", id);
         Province province = provinceRepository.findOne(id);
         if(province != null){
-        	province.setName(I18n.getTranslationText(province.getI18nName()));
-        	province.setDescription(I18n.getTranslationText(province.getI18nDescription()));
+        	province.resolveTraduction();
         	String contentType  = province.getImage().getContentType(); // Lazy
         }
         return Optional.ofNullable(province)

@@ -9,5 +9,6 @@
     <include file="classpath:config/liquibase/changelog/20160128173821_added_entity_Image.xml" relativeToChangelogFile="false"/>
    	<include file="classpath:config/liquibase/changelog/20160128173819_added_entity_Province.xml" relativeToChangelogFile="false"/>
 
+    <include file="classpath:config/liquibase/changelog/20160206165246_added_entity_Stage.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

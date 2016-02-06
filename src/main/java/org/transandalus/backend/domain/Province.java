@@ -138,6 +138,11 @@ public class Province implements Serializable {
             ", description='" + description + "'" +
             '}';
     }
+    
+    public void resolveTraduction(){
+    	this.setName(I18n.getTranslationText(this.getI18nName()));
+    	this.setDescription(I18n.getTranslationText(this.getI18nDescription()));
+    }
 
 	
 }

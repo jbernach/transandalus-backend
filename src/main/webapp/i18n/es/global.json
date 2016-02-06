@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entidades",
                 "province": "Provincia",
+                "stage": "Stage",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

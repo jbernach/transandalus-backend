@@ -1,0 +1,92 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "province",
+            "otherEntityName": "province",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "code"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "nextStage",
+            "otherEntityName": "stage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "nextAltStage",
+            "otherEntityName": "stage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "prevStage",
+            "otherEntityName": "stage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "prevAltStage",
+            "otherEntityName": "stage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "distanceTotal",
+            "fieldType": "Float"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "distanceRoad",
+            "fieldType": "Float"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "estimatedTime",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "elevation",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "difficultyPhys",
+            "fieldType": "Difficulty",
+            "fieldValues": "Very Low, Low, Medium, Hight, Very Hight"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "difficultyTech",
+            "fieldType": "Difficulty",
+            "fieldValues": ""
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "galleryURL",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160206165246",
+    "dto": "no",
+    "service": "no",
+    "pagination": "pager"
+}

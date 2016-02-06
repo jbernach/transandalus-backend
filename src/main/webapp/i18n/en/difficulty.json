@@ -1,0 +1,17 @@
+{
+    "backendApp": {
+        "Difficulty" : {
+            "null": "",
+            "VeryLow": "Very low",
+            "Low": "Low",
+            "Medium": "Medium",
+            "High": "High",
+            "VeryHigh": "Very high",
+            "VERY_LOW": "Very low",
+            "LOW": "Low",
+            "MEDIUM": "Medium",
+            "HIGH": "High",
+            "VERYHIGH": "Very high"
+        }
+    }
+}

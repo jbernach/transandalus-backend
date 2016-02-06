@@ -1,0 +1,36 @@
+{
+    "backendApp": {
+        "stage" : {
+            "home": {
+                "title": "Stages",
+                "createLabel": "Create a new Stage",
+                "createOrEditLabel": "Create or edit a Stage",
+                "search": "Search for Stage"
+            },
+            "created": "A new Stage is created with identifier {{ param }}",
+            "updated": "A Stage is updated with identifier {{ param }}",
+            "deleted": "A Stage is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Stage {{ id }}?"
+            },
+            "detail": {
+                "title": "Stage"
+            },
+            "name": "Name",
+            "description": "Description",
+            "distanceTotal": "Total distance (km)",
+            "distanceRoad": "Road distance (km)",
+            "estimatedTime": "Estimated time (min)",
+            "elevation": "Elevation (m)",
+            "difficultyPhys": "Physical difficulty",
+            "difficultyTech": "Tech difficulty",
+            "galleryURL": "Gallery URL",
+            "province": "Province",
+            "nextStage": "Next Stage",
+            "nextAltStage": "Next alternative Stage",
+            "prevStage": "Previous Stage",
+            "prevAltStage": "Previous alternative Stage",
+            "image": "Image"
+        }
+    }
+}

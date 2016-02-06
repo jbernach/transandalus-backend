@@ -1,0 +1,152 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myStageLabel" translate="backendApp.stage.home.createOrEditLabel">Create or edit a Stage</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="stage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="stage.name"
+                     />
+        </div>
+        
+        <div class="form-group">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <label class="control-label" translate="backendApp.stage.description" for="field_description">Description</label>
+                        <textarea class="form-control" name="description" id="field_description" ng-model="stage.description" rows="6"></textarea>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label class="control-label" translate="global.form.preview">Preview</label>
+                        <span class="form-control-static" marked="stage.description"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.distanceTotal" for="field_distanceTotal">DistanceTotal</label>
+            <input type="number" class="form-control" name="distanceTotal" id="field_distanceTotal"
+                    ng-model="stage.distanceTotal"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.distanceRoad" for="field_distanceRoad">DistanceRoad</label>
+            <input type="number" class="form-control" name="distanceRoad" id="field_distanceRoad"
+                    ng-model="stage.distanceRoad"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.estimatedTime" for="field_estimatedTime">EstimatedTime</label>
+            <input type="number" class="form-control" name="estimatedTime" id="field_estimatedTime"
+                    ng-model="stage.estimatedTime"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.elevation" for="field_elevation">Elevation</label>
+            <input type="number" class="form-control" name="elevation" id="field_elevation"
+                    ng-model="stage.elevation"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.difficultyPhys" for="field_difficultyPhys">DifficultyPhys</label>
+            <select class="form-control" name="difficultyPhys" ng-model="stage.difficultyPhys" id="field_difficultyPhys">
+                <option value="VERY_LOW" translate="backendApp.Difficulty.VeryLow">VeryLow</option>
+                <option value="LOW" translate="backendApp.Difficulty.Low">Low</option>
+                <option value="MEDIUM" translate="backendApp.Difficulty.Medium">Medium</option>
+                <option value="HIGH" translate="backendApp.Difficulty.High">High</option>
+                <option value="VERY_HIGH" translate="backendApp.Difficulty.VeryHigh">VeryHigh</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.difficultyTech" for="field_difficultyTech">DifficultyTech</label>
+            <select class="form-control" name="difficultyTech" ng-model="stage.difficultyTech" id="field_difficultyTech">
+                <option value="VERY_LOW" translate="backendApp.Difficulty.VeryLow">VeryLow</option>
+                <option value="LOW" translate="backendApp.Difficulty.Low">Low</option>
+                <option value="MEDIUM" translate="backendApp.Difficulty.Medium">Medium</option>
+                <option value="HIGH" translate="backendApp.Difficulty.High">High</option>
+                <option value="VERY_HIGH" translate="backendApp.Difficulty.VeryHigh">VeryHigh</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.galleryURL" for="field_galleryURL">GalleryURL</label>
+            <input type="text" class="form-control" name="galleryURL" id="field_galleryURL"
+                    ng-model="stage.galleryURL"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="backendApp.stage.province" for="field_province">province</label>
+            <select class="form-control" id="field_province" name="province" ng-model="stage.province" ng-options="province as province.name for province in provinces track by province.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="backendApp.stage.nextStage" for="field_nextStage">nextStage</label>
+            <select class="form-control" id="field_nextStage" name="nextStage" ng-model="stage.nextStage" ng-options="stage as stage.name for stage in stages track by stage.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="backendApp.stage.nextAltStage" for="field_nextAltStage">nextAltStage</label>
+            <select class="form-control" id="field_nextAltStage" name="nextAltStage" ng-model="stage.nextAltStage" ng-options="stage as stage.name for stage in stages track by stage.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="backendApp.stage.prevStage" for="field_prevStage">prevStage</label>
+            <select class="form-control" id="field_prevStage" name="prevStage" ng-model="stage.prevStage" ng-options="stage as stage.name for stage in stages track by stage.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="backendApp.stage.prevAltStage" for="field_prevAltStage">prevAltStage</label>
+            <select class="form-control" id="field_prevAltStage" name="prevAltStage" ng-model="stage.prevAltStage" ng-options="stage as stage.name for stage in stages track by stage.id">
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="form-group" ngf-drop ngf-change="setImage($file, stage)" ngf-pattern="'image/*'">
+        <label class="control-label" translate="backendApp.stage.image" for="field_image">Image</label>
+        <div>
+            <img data-ng-src="{{'data:' + stage.image.contentType + ';base64,' + stage.image.content}}" style="max-height: 100px;" ng-if="stage.image.contentType"/>
+            <div class="help-block clearfix">
+                <span class="pull-left">{{stage.image.contentType}} {{byteSize(stage.image.content)}}</span>
+                <button ng-click="clearImage(stage);"
+                        ng-if="stage.image.contentType"
+                        class="btn btn-default btn-xs pull-right">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <button type="file" ngf-select class="btn btn-default btn-block"
+                    ngf-change="setImage($file, stage)" accept="image/*" translate="entity.action.addimage">
+                Add image
+            </button>
+        </div>
+        <input type="hidden" class="form-control" name="image" id="field_image"
+                ng-model="stage.image.content"
+                 />
+        <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                ng-model="stage.image.contentType" />
+    </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
