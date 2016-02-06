@@ -2,7 +2,7 @@
     "backendApp": {
         "stage" : {
             "home": {
-                "title": "Estapas",
+                "title": "Etapas",
                 "createLabel": "Crear nueva Etapa",
                 "createOrEditLabel": "Crear o editar Etapa",
                 "search": "Buscar Etapa"
