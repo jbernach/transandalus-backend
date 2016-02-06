@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 /**
@@ -63,4 +64,24 @@ public class Translation implements Serializable{
 	public void setTxContent(String txContent) {
 		this.txContent = txContent;
 	}
+	
+	 @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Translation translation = (Translation) o;
+        if(translation.id == null || id == null) {
+            return false;
+        }
+        return Objects.equals(id, translation.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

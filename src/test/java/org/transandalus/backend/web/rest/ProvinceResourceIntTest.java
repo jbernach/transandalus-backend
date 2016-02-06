@@ -83,8 +83,7 @@ public class ProvinceResourceIntTest {
         province.setCode(DEFAULT_CODE);
         province.setName(DEFAULT_NAME);
         province.setDescription(DEFAULT_DESCRIPTION);
-        province.setImage(DEFAULT_IMAGE);
-        province.setImageContentType(DEFAULT_IMAGE_CONTENT_TYPE);
+        
     }
 
     @Test
@@ -106,8 +105,6 @@ public class ProvinceResourceIntTest {
         assertThat(testProvince.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testProvince.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProvince.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testProvince.getImage()).isEqualTo(DEFAULT_IMAGE);
-        assertThat(testProvince.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
     }
 
     @Test

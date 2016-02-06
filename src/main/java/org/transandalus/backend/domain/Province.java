@@ -47,14 +47,11 @@ public class Province implements Serializable {
     @JsonIgnore
     private I18n i18nDescription;
     
-       
-    @Lob
-    @Column(name = "image")
-    private byte[] image;
     
-    @Column(name = "image_content_type")
-    private String imageContentType;
-    
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "image", nullable = false)
+    private Image image;
+ 
     
     public Long getId() {
         return id;
@@ -88,22 +85,6 @@ public class Province implements Serializable {
         this.description = description;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-    
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    public String getImageContentType() {
-        return imageContentType;
-    }
-
-    public void setImageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
-    }
-
     public I18n getI18nName() {
 		return i18nName;
 	}
@@ -120,7 +101,15 @@ public class Province implements Serializable {
 		this.i18nDescription = i18nDescription;
 	}
 	
-    @Override
+    public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -147,8 +136,6 @@ public class Province implements Serializable {
             ", code='" + code + "'" +
             ", name='" + name + "'" +
             ", description='" + description + "'" +
-            ", image='" + image + "'" +
-            ", imageContentType='" + imageContentType + "'" +
             '}';
     }
 

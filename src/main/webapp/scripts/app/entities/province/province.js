@@ -64,8 +64,7 @@ angular.module('backendApp')
                                     code: null,
                                     name: null,
                                     description: null,
-                                    image: null,
-                                    imageContentType: null,
+                                    image: {id:null, content: null, contentType: null},
                                     id: null
                                 };
                             }

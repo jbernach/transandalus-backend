@@ -3,6 +3,7 @@ package org.transandalus.backend.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import org.transandalus.backend.domain.I18n;
+import org.transandalus.backend.domain.Image;
 import org.transandalus.backend.domain.Province;
 import org.transandalus.backend.repository.ProvinceRepository;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import java.net.URI;
@@ -44,6 +46,7 @@ public class ProvinceResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public ResponseEntity<Province> createProvince(@Valid @RequestBody Province province) throws URISyntaxException {
         log.debug("REST request to save Province : {}", province);
         if (province.getId() != null) {
@@ -52,7 +55,7 @@ public class ProvinceResource {
 
         province.setI18nName(I18n.setTranslationText(province.getI18nName(), province.getName()));
         province.setI18nDescription(I18n.setTranslationText(province.getI18nDescription(), province.getDescription()));
-
+        
         Province result = provinceRepository.save(province);
         return ResponseEntity.created(new URI("/api/provinces/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("province", result.getId().toString()))
@@ -66,6 +69,7 @@ public class ProvinceResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public ResponseEntity<Province> updateProvince(@Valid @RequestBody Province province) throws URISyntaxException {
         log.debug("REST request to update Province : {}", province);
         if (province.getId() == null) {
@@ -77,10 +81,10 @@ public class ProvinceResource {
         result.setCode(province.getCode());
         result.setI18nName(I18n.setTranslationText(result.getI18nName(), province.getName()));
         result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), province.getDescription()));
-        result.setImage(province.getImage());
-        result.setImageContentType(province.getImageContentType());
         result.setName(province.getName());
         result.setDescription(province.getDescription());
+        result.getImage().setContent(province.getImage().getContent());
+        result.getImage().setContentType(province.getImage().getContentType());
         
         result = provinceRepository.save(result);
         
@@ -116,12 +120,14 @@ public class ProvinceResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public ResponseEntity<Province> getProvince(@PathVariable Long id) {
         log.debug("REST request to get Province : {}", id);
         Province province = provinceRepository.findOne(id);
         if(province != null){
         	province.setName(I18n.getTranslationText(province.getI18nName()));
         	province.setDescription(I18n.getTranslationText(province.getI18nDescription()));
+        	String contentType  = province.getImage().getContentType(); // Lazy
         }
         return Optional.ofNullable(province)
             .map(result -> new ResponseEntity<>(

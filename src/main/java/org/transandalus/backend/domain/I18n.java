@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -84,6 +85,26 @@ public class I18n implements Serializable {
 		return text;
 	}
 	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        I18n i18n = (I18n) o;
+        if(i18n.id == null || id == null) {
+            return false;
+        }
+        return Objects.equals(id, i18n.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+    
 	public static String getTranslationText(I18n i18n){
 		return (i18n == null)?null:i18n.getTranslationText();
 	}

@@ -33,24 +33,27 @@
             	<constraints nullable="false"/>
             </column>
             
-            <column name="image" type="mediumblob" />
-            <column name="image_content_type" type="varchar(50)">
-                
-            </column>
+            <column name="image" type="bigint" />
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="i18n_name"
                                  baseTableName="province"
-                                 constraintName="fk_name"
+                                 constraintName="fk_prov_name"
                                  referencedColumnNames="id_i18n"
                                  referencedTableName="i18n"/>
                                  
         <addForeignKeyConstraint baseColumnNames="i18n_description"
                                  baseTableName="province"
-                                 constraintName="fk_description"
+                                 constraintName="fk_prov_description"
                                  referencedColumnNames="id_i18n"
                                  referencedTableName="i18n"/>
+                                 
+        <addForeignKeyConstraint baseColumnNames="image"
+                                 baseTableName="province"
+                                 constraintName="fk_prov_image"
+                                 referencedColumnNames="id"
+                                 referencedTableName="image"/>
     </changeSet>
 </databaseChangeLog>

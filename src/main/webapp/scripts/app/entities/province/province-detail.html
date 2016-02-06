@@ -39,8 +39,8 @@
                     <span translate="backendApp.province.image">Image</span>
                 </td>
                 <td>
-                    <img data-ng-src="{{'data:' + province.imageContentType + ';base64,' + province.image}}" style="max-width: 100%;" ng-if="province.image"/>
-                    <div>{{province.imageContentType}}  {{byteSize(province.image)}}</div>
+                    <img data-ng-src="{{'data:' + province.image.contentType + ';base64,' + province.image.content}}" style="max-width: 100%;" ng-if="province.image.contentType"/>
+                    <div>{{province.image.contentType}}  {{byteSize(province.image.content)}}</div>
                 </td>
             </tr>
             </tbody>

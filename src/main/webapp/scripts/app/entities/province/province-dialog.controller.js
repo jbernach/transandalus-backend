@@ -38,6 +38,11 @@ angular.module('backendApp').controller('ProvinceDialogController',
 
         $scope.byteSize = DataUtils.byteSize;
 
+        $scope.clearImage = function(province){
+            province.image.content = '';
+            province.image.contentType = '';
+        };
+
         $scope.setImage = function ($file, province) {
             if ($file && $file.$error == 'pattern') {
                 return;
@@ -48,8 +53,11 @@ angular.module('backendApp').controller('ProvinceDialogController',
                 fileReader.onload = function (e) {
                     var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
                     $scope.$apply(function() {
-                        province.image = base64Data;
-                        province.imageContentType = $file.type;
+                        if(province.image == null){
+                            province.image = {};
+                        }
+                        province.image.content = base64Data;
+                        province.image.contentType = $file.type;
                     });
                 };
             }

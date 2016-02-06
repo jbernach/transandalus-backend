@@ -48,11 +48,11 @@
         <div class="form-group" ngf-drop ngf-change="setImage($file, province)" ngf-pattern="'image/*'">
             <label class="control-label" translate="backendApp.province.image" for="field_image">Image</label>
             <div>
-                <img data-ng-src="{{'data:' + province.imageContentType + ';base64,' + province.image}}" style="max-height: 100px;" ng-if="province.image"/>
+                <img data-ng-src="{{'data:' + province.image.contentType + ';base64,' + province.image.content}}" style="max-height: 100px;" ng-if="province.image.contentType"/>
                 <div class="help-block clearfix">
-                    <span class="pull-left">{{province.imageContentType}} {{byteSize(province.image)}}</span>
-                    <button ng-click="province.image=null;province.imageContentType=null;"
-                            ng-if="province.image"
+                    <span class="pull-left">{{province.image.contentType}} {{byteSize(province.image.content)}}</span>
+                    <button ng-click="clearImage(province);"
+                            ng-if="province.image.contentType"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
@@ -63,10 +63,10 @@
                 </button>
             </div>
             <input type="hidden" class="form-control" name="image" id="field_image"
-                    ng-model="province.image"
+                    ng-model="province.image.content"
                      />
             <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
-                    ng-model="province.imageContentType" />
+                    ng-model="province.image.contentType" />
         </div>
 
     </div>
