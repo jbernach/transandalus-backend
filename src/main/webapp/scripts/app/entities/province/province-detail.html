@@ -36,11 +36,19 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="backendApp.province.image">Image</span>
+                    <span translate="backendApp.province.image">Image URL</span>
                 </td>
                 <td>
-                    <img data-ng-src="{{'data:' + province.image.contentType + ';base64,' + province.image.content}}" style="max-width: 100%;" ng-if="province.image.contentType"/>
-                    <div>{{province.image.contentType}}  {{byteSize(province.image.content)}}</div>
+                    <span class="form-control-static">{{province.imageUrl}}</span>
+                    <img data-ng-src="{{province.imageUrl}}" style="max-width: 100%;" ng-if="province.imageUrl"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.province.track">Track</span>
+                </td>
+                <td>
+                    <div>{{province.track.contentType}}  {{byteSize(province.track.content)}}</div>
                 </td>
             </tr>
             </tbody>

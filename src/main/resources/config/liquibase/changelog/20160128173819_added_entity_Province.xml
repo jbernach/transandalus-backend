@@ -33,27 +33,32 @@
             	<constraints nullable="false"/>
             </column>
             
-            <column name="image" type="bigint" />
+            <column name="image_url" type="varchar(1024)" />
+
+            <column name="track" type="bigint" />
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="i18n_name"
-                                 baseTableName="province"
-                                 constraintName="fk_prov_name"
-                                 referencedColumnNames="id_i18n"
-                                 referencedTableName="i18n"/>
+        <addForeignKeyConstraint 
+            constraintName="fk_prov_name"
+            baseTableName="province"
+            baseColumnNames="i18n_name" 
+            referencedTableName="i18n"
+            referencedColumnNames="id_i18n"/>
+                     
+        <addForeignKeyConstraint
+            constraintName="fk_prov_description"
+            baseTableName="province"
+            baseColumnNames="i18n_description"
+            referencedTableName="i18n"
+            referencedColumnNames="id_i18n"/>
                                  
-        <addForeignKeyConstraint baseColumnNames="i18n_description"
-                                 baseTableName="province"
-                                 constraintName="fk_prov_description"
-                                 referencedColumnNames="id_i18n"
-                                 referencedTableName="i18n"/>
-                                 
-        <addForeignKeyConstraint baseColumnNames="image"
-                                 baseTableName="province"
-                                 constraintName="fk_prov_image"
-                                 referencedColumnNames="id"
-                                 referencedTableName="image"/>
+        <addForeignKeyConstraint
+            constraintName="fk_prov_track"
+            baseTableName="province"
+            baseColumnNames="track"
+            referencedTableName="track"  
+            referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>

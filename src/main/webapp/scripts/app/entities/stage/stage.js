@@ -73,7 +73,8 @@ angular.module('backendApp')
                                     difficultyPhys: null,
                                     difficultyTech: null,
                                     galleryURL: null,
-                                    image: {id:null, content: null, contentType: null},
+                                    imageUrl: null,
+                                    track: {id:null, name: null, content: null, contentType: null},
                                     id: null
                                 };
                             }

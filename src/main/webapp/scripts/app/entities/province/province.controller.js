@@ -31,7 +31,8 @@ angular.module('backendApp')
                 code: null,
                 name: null,
                 description: null,
-                image: {id:null, content: null, contentType: null},
+                image_url: null,
+                track: {id:null, name: null, content: null, contentType: null},
                 id: null
             };
         };

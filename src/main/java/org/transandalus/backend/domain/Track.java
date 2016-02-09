@@ -3,31 +3,27 @@ package org.transandalus.backend.domain;
 
 import javax.persistence.*;
 
-import org.springframework.context.i18n.LocaleContextHolder;
-
-import com.fasterxml.jackson.annotation.*;
-
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 
 /**
- * DB persisted image.
+ * DB persisted track data in a KML file.
  * @author JoseMaria
  *
  */
 @Entity
-@Table(name = "image")
-public class Image implements Serializable {
+@Table(name = "track")
+public class Track implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@Lob
-	@Column(name = "content")
-	private byte[] content;
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "content", columnDefinition="clob")
+	private String content;
 	    
 	@Column(name = "content_type")
 	private String ContentType;
@@ -41,11 +37,11 @@ public class Image implements Serializable {
 		this.id = id;
 	}
 
-	public byte[] getContent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(byte[] content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
@@ -57,6 +53,14 @@ public class Image implements Serializable {
 		ContentType = contentType;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -65,11 +69,11 @@ public class Image implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Image img = (Image) o;
-        if(img.id == null || id == null) {
+        Track trk = (Track) o;
+        if(trk.id == null || id == null) {
             return false;
         }
-        return Objects.equals(id, img.id);
+        return Objects.equals(id, trk.id);
     }
 
     @Override

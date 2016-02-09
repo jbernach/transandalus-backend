@@ -38,26 +38,26 @@ angular.module('backendApp').controller('ProvinceDialogController',
 
         $scope.byteSize = DataUtils.byteSize;
 
-        $scope.clearImage = function(province){
-            province.image.content = '';
-            province.image.contentType = '';
+        $scope.clearTrack = function(province){
+            province.track.content = '';
+            province.track.contentType = '';
         };
 
-        $scope.setImage = function ($file, province) {
+        $scope.setTrack = function ($file, province) {
             if ($file && $file.$error == 'pattern') {
                 return;
             }
             if ($file) {
                 var fileReader = new FileReader();
-                fileReader.readAsDataURL($file);
+                fileReader.readAsText($file);
                 fileReader.onload = function (e) {
-                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+                    var textData = e.target.result;
                     $scope.$apply(function() {
-                        if(province.image == null){
-                            province.image = {};
+                        if(province.track == null){
+                            province.track = {};
                         }
-                        province.image.content = base64Data;
-                        province.image.contentType = $file.type;
+                        province.track.content = textData;
+                        province.track.contentType = $file.type;
                     });
                 };
             }

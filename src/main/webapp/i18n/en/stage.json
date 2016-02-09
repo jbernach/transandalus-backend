@@ -30,7 +30,8 @@
             "nextAltStage": "Next alternative Stage",
             "prevStage": "Previous Stage",
             "prevAltStage": "Previous alternative Stage",
-            "image": "Image"
+            "image": "Image URL",
+            "track": "Track (kml)"
         }
     }
 }

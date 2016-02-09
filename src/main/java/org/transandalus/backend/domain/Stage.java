@@ -2,6 +2,7 @@ package org.transandalus.backend.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -47,9 +48,12 @@ public class Stage implements Serializable {
     
     
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "image", nullable = false)
-    private Image image;
+    @JoinColumn(name = "track", nullable = false)
+    private Track track;
  
+    @Size(max = 1024)
+    @Column(name="image_url", length = 1024)
+    private  String imageUrl;
     
     @Column(name = "distance_total")
     private Float distanceTotal;
@@ -71,7 +75,8 @@ public class Stage implements Serializable {
     @Column(name = "difficulty_tech")
     private Difficulty difficultyTech;
     
-    @Column(name = "gallery_url")
+    @Size(max = 1024)
+    @Column(name="gallery_url", length = 1024)
     private String galleryURL;
     
     @ManyToOne(fetch = FetchType.EAGER)
@@ -134,15 +139,23 @@ public class Stage implements Serializable {
 		this.i18nDescription = i18nDescription;
 	}
 	
-    public Image getImage() {
-		return image;
+    public Track getTrack() {
+		return track;
 	}
 
-	public void setImage(Image image) {
-		this.image = image;
+	public void setTrack(Track track) {
+		this.track = track;
 	}
 	
-    public Float getDistanceTotal() {
+    public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public Float getDistanceTotal() {
         return distanceTotal;
     }
     

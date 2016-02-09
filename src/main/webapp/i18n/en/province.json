@@ -19,7 +19,8 @@
             "code": "Code",
             "name": "Name",
             "description": "Description",
-            "image": "Image"
+            "image": "Image URL",
+            "track": "Track (kml)"
         }
     }
 }

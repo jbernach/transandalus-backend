@@ -3,7 +3,6 @@ package org.transandalus.backend.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import org.transandalus.backend.domain.I18n;
-import org.transandalus.backend.domain.Image;
 import org.transandalus.backend.domain.Province;
 import org.transandalus.backend.repository.ProvinceRepository;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
@@ -83,8 +82,8 @@ public class ProvinceResource {
         result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), province.getDescription()));
         result.setName(province.getName());
         result.setDescription(province.getDescription());
-        result.getImage().setContent(province.getImage().getContent());
-        result.getImage().setContentType(province.getImage().getContentType());
+        result.setTrack(province.getTrack());
+        result.setImageUrl(province.getImageUrl());
         
         result = provinceRepository.save(result);
         
@@ -125,7 +124,7 @@ public class ProvinceResource {
         Province province = provinceRepository.findOne(id);
         if(province != null){
         	province.resolveTraduction();
-        	String contentType  = province.getImage().getContentType(); // Lazy
+        	String contentType  = province.getTrack().getContentType(); // Lazy
         }
         return Optional.ofNullable(province)
             .map(result -> new ResponseEntity<>(

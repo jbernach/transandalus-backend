@@ -16,13 +16,14 @@
     <!--
         Added the entity Image.
     -->
-    <changeSet id="20160128173821" author="jbernach">
-        <createTable tableName="image">
+    <changeSet id="20160209214000" author="jbernach">
+        <createTable tableName="track">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-                        
-            <column name="content" type="mediumblob" />
+             
+            <column name="name" type="varchar(255)" />           
+            <column name="content" type="TEXT" />
             <column name="content_type" type="varchar(50)" />
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->

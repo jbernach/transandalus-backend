@@ -49,9 +49,12 @@ public class Province implements Serializable {
     
     
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "image", nullable = false)
-    private Image image;
+    @JoinColumn(name = "track", nullable = false)
+    private Track track;
  
+    @Size(max = 1024)
+    @Column(name="image_url", length = 1024)
+    private String imageUrl;
     
     public Long getId() {
         return id;
@@ -101,12 +104,20 @@ public class Province implements Serializable {
 		this.i18nDescription = i18nDescription;
 	}
 	
-    public Image getImage() {
-		return image;
+    public Track getTrack() {
+		return track;
 	}
 
-	public void setImage(Image image) {
-		this.image = image;
+	public void setTrack(Track track) {
+		this.track = track;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

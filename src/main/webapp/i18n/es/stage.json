@@ -30,7 +30,8 @@
             "nextAltStage": "Siguiente etapa (alternativa)",
             "prevStage": "Etapa anterior",
             "prevAltStage": "Etapa anterior (alternativa)",
-            "image": "Imagen"
+            "image": "URL Imagen",
+            "track": "Track (kml)"
         }
     }
 }

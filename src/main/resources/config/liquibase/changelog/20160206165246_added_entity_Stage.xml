@@ -30,7 +30,9 @@
                 <constraints nullable="false"/>
             </column>
             
-            <column name="image" type="bigint" />
+            <column name="image_url" type="varchar(1024)" />
+
+            <column name="track" type="bigint" />
 
             <column name="distance_total" type="${floatType}"/>
             
@@ -44,7 +46,7 @@
             
             <column name="difficulty_tech" type="varchar(255)"/>
             
-            <column name="gallery_url" type="varchar(255)"/>
+            <column name="gallery_url" type="varchar(1024)"/>
             
             <column name="province_id" type="bigint"/>
             <column name="next_stage_id" type="bigint"/>
@@ -54,53 +56,61 @@
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="province_id"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_province_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="province"/>
+        <addForeignKeyConstraint
+            constraintName="fk_stage_province_id"
+            baseTableName="stage"
+            baseColumnNames="province_id"
+            referencedTableName="province"
+            referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseColumnNames="next_stage_id"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_nextstage_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="stage"/>
+        <addForeignKeyConstraint
+            constraintName="fk_stage_nextstage_id"
+            baseTableName="stage"
+            baseColumnNames="next_stage_id"
+            referencedTableName="stage"
+            referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseColumnNames="next_alt_stage_id"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_nextaltstage_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="stage"/>
+        <addForeignKeyConstraint
+            constraintName="fk_stage_nextaltstage_id"
+            baseTableName="stage"
+            baseColumnNames="next_alt_stage_id"
+            referencedTableName="stage"
+            referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseColumnNames="prev_stage_id"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_prevstage_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="stage"/>
+        <addForeignKeyConstraint
+            constraintName="fk_stage_prevstage_id"
+            baseTableName="stage"
+            baseColumnNames="prev_stage_id"
+            referencedTableName="stage"
+            referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseColumnNames="prev_alt_stage_id"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_prevaltstage_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="stage"/>
+        <addForeignKeyConstraint
+            constraintName="fk_stage_prevaltstage_id"
+            baseTableName="stage"
+            baseColumnNames="prev_alt_stage_id"                        
+            referencedTableName="stage"
+            referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseColumnNames="i18n_name"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_name"
-                                 referencedColumnNames="id_i18n"
-                                 referencedTableName="i18n"/>
-                                 
-        <addForeignKeyConstraint baseColumnNames="i18n_description"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_description"
-                                 referencedColumnNames="id_i18n"
-                                 referencedTableName="i18n"/>
-                                 
-        <addForeignKeyConstraint baseColumnNames="image"
-                                 baseTableName="stage"
-                                 constraintName="fk_stage_image"
-                                 referencedColumnNames="id"
-                                 referencedTableName="image"/>
+        <addForeignKeyConstraint
+            constraintName="fk_stage_name"
+            baseTableName="stage"
+            baseColumnNames="i18n_name"
+            referencedTableName="i18n"
+            referencedColumnNames="id_i18n"/>
+                     
+        <addForeignKeyConstraint
+            constraintName="fk_stage_description"
+            baseTableName="stage"
+            baseColumnNames="i18n_description"
+            referencedTableName="i18n"
+            referencedColumnNames="id_i18n"/>
+                     
+        <addForeignKeyConstraint
+            constraintName="fk_stage_track"
+            baseTableName="stage"
+            baseColumnNames="track"
+            referencedTableName="track"
+            referencedColumnNames="id"/>
 
     </changeSet>
 </databaseChangeLog>

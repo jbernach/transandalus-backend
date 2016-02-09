@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <label class="control-label" translate="backendApp.province.description" for="field_description">Description</label>
-                        <textarea class="form-control" name="description" id="field_description" ng-model="province.description" rows="6"></textarea>
+                        <textarea class="form-control" name="description" id="field_description" ng-model="province.description" rows="12"></textarea>
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <label class="control-label" translate="global.form.preview">Preview</label>
@@ -54,28 +54,38 @@
             </div>
         </div>
         
-        <div class="form-group" ngf-drop ngf-change="setImage($file, province)" ngf-pattern="'image/*'">
-            <label class="control-label" translate="backendApp.province.image" for="field_image">Image</label>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.province.image" for="field_imageUrl">Image URL</label>
             <div>
-                <img data-ng-src="{{'data:' + province.image.contentType + ';base64,' + province.image.content}}" style="max-height: 100px;" ng-if="province.image.contentType"/>
+                <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" ng-model="province.imageUrl" />
+                <img data-ng-src="{{province.imageUrl}}" style="max-height: 100px;" ng-if="province.imageUrl"/>
+            </div>
+        </div>
+
+        <div class="form-group" ngf-drop ngf-change="setTrack($file, province)" ngf-pattern="'.kml'">
+            <label class="control-label" translate="backendApp.province.track" for="field_track">Track (kml)</label>
+            <div>
                 <div class="help-block clearfix">
-                    <span class="pull-left">{{province.image.contentType}} {{byteSize(province.image.content)}}</span>
-                    <button ng-click="clearImage(province);"
-                            ng-if="province.image.contentType"
+                    <span class="pull-left">{{province.track.contentType}} {{byteSize(province.track.content)}}</span>
+                    <button ng-click="clearTrack(province);"
+                            ng-if="province.track.contentType"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
                 <button type="file" ngf-select class="btn btn-default btn-block"
-                        ngf-change="setImage($file, province)" accept="image/*" translate="entity.action.addimage">
-                    Add image
+                        ngf-change="setTrack($file, province)" accept=".kml" translate="entity.action.addblob">
+                    Add file
                 </button>
             </div>
-            <input type="hidden" class="form-control" name="image" id="field_image"
-                    ng-model="province.image.content"
+            <input type="hidden" class="form-control" name="trackName" id="field_trackName"
+                    ng-model="province.track.name" />
+
+            <input type="hidden" class="form-control" name="track" id="field_track"
+                    ng-model="province.track.content"
                      />
-            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
-                    ng-model="province.image.contentType" />
+            <input type="hidden" class="form-control" name="trackContentType" id="field_trackContentType"
+                    ng-model="province.track.contentType" />
         </div>
 
     </div>

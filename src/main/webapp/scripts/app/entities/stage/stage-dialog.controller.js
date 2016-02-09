@@ -40,26 +40,26 @@ angular.module('backendApp').controller('StageDialogController',
 
         $scope.byteSize = DataUtils.byteSize;
 
-        $scope.clearImage = function(stage){
-            stage.image.content = '';
-            stage.image.contentType = '';
+        $scope.clearTrack = function(stage){
+            stage.track.content = '';
+            stage.track.contentType = '';
         };
 
-        $scope.setImage = function ($file, stage) {
+        $scope.setTrack= function ($file, stage) {
             if ($file && $file.$error == 'pattern') {
                 return;
             }
             if ($file) {
                 var fileReader = new FileReader();
-                fileReader.readAsDataURL($file);
+                fileReader.readAsText($file);
                 fileReader.onload = function (e) {
-                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+                    var textData = e.target.result;
                     $scope.$apply(function() {
-                        if(stage.image == null){
-                            stage.image = {};
+                        if(stage.track == null){
+                            stage.track = {};
                         }
-                        stage.image.content = base64Data;
-                        stage.image.contentType = $file.type;
+                        stage.track.content = textData;
+                        stage.track.contentType = $file.type;
                     });
                 };
             }

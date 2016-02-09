@@ -82,8 +82,8 @@ public class StageResource {
         result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), stage.getDescription()));
         result.setName(stage.getName());
         result.setDescription(stage.getDescription());
-        result.getImage().setContent(stage.getImage().getContent());
-        result.getImage().setContentType(stage.getImage().getContentType());
+        result.setTrack(stage.getTrack());
+        result.setImageUrl(stage.getImageUrl());
         result.setDistanceTotal(stage.getDistanceTotal());
         result.setDistanceRoad(stage.getDistanceRoad());
         result.setEstimatedTime(stage.getEstimatedTime());
@@ -138,7 +138,7 @@ public class StageResource {
         if(stage != null){
         	stage.resolveTraduction();
         	stage.getProvince().resolveTraduction();
-        	String contentType  = stage.getImage().getContentType(); // Lazy
+        	String contentType  = stage.getTrack().getContentType(); // Lazy
         }
         return Optional.ofNullable(stage)
             .map(result -> new ResponseEntity<>(

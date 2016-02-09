@@ -42,11 +42,12 @@
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="id_i18n"
-                                 baseTableName="translation"
-                                 constraintName="fk_i18n"
-                                 referencedColumnNames="id_i18n"
-                                 referencedTableName="i18n"/>
+        <addForeignKeyConstraint
+            constraintName="fk_trans_i18n"
+            baseTableName="translation"
+            baseColumnNames="id_i18n"
+            referencedTableName="i18n"
+            referencedColumnNames="id_i18n"/>
                                 
      	
     </changeSet>

@@ -116,29 +116,39 @@
             </select>
         </div>
 
-        <div class="form-group" ngf-drop ngf-change="setImage($file, stage)" ngf-pattern="'image/*'">
-        <label class="control-label" translate="backendApp.stage.image" for="field_image">Image</label>
-        <div>
-            <img data-ng-src="{{'data:' + stage.image.contentType + ';base64,' + stage.image.content}}" style="max-height: 100px;" ng-if="stage.image.contentType"/>
-            <div class="help-block clearfix">
-                <span class="pull-left">{{stage.image.contentType}} {{byteSize(stage.image.content)}}</span>
-                <button ng-click="clearImage(stage);"
-                        ng-if="stage.image.contentType"
-                        class="btn btn-default btn-xs pull-right">
-                    <span class="glyphicon glyphicon-remove"></span>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.image" for="field_imageUrl">Image URL</label>
+            <div>
+                <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" ng-model="stage.imageUrl" />
+                <img data-ng-src="{{stage.imageUrl}}" style="max-height: 100px;" ng-if="stage.imageUrl"/>
+            </div>
+        </div>
+
+        <div class="form-group" ngf-drop ngf-change="setTrack($file, stage)" ngf-pattern="'.kml'">
+            <label class="control-label" translate="backendApp.stage.track" for="field_track">Track (kml)</label>
+            <div>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{stage.track.contentType}} {{byteSize(stage.track.content)}}</span>
+                    <button ng-click="clearTrack(stage);"
+                            ng-if="stage.track.contentType"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="setTrack($file, stage)" accept=".kml" translate="entity.action.addblob">
+                    Add file
                 </button>
             </div>
-            <button type="file" ngf-select class="btn btn-default btn-block"
-                    ngf-change="setImage($file, stage)" accept="image/*" translate="entity.action.addimage">
-                Add image
-            </button>
+            <input type="hidden" class="form-control" name="trackName" id="field_trackName"
+                    ng-model="stage.track.name" />
+
+            <input type="hidden" class="form-control" name="track" id="field_track"
+                    ng-model="stage.track.content"
+                     />
+            <input type="hidden" class="form-control" name="trackContentType" id="field_trackContentType"
+                    ng-model="stage.track.contentType" />
         </div>
-        <input type="hidden" class="form-control" name="image" id="field_image"
-                ng-model="stage.image.content"
-                 />
-        <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
-                ng-model="stage.image.contentType" />
-    </div>
     </div>
 
     <div class="modal-footer">
