@@ -3,7 +3,6 @@ package org.transandalus.backend.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import org.transandalus.backend.domain.I18n;
-import org.transandalus.backend.domain.Province;
 import org.transandalus.backend.domain.Stage;
 import org.transandalus.backend.repository.StageRepository;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
@@ -138,7 +137,12 @@ public class StageResource {
         if(stage != null){
         	stage.resolveTraduction();
         	stage.getProvince().resolveTraduction();
-        	String contentType  = stage.getTrack().getContentType(); // Lazy
+        	stage.getTrack().getContentType(); // Lazy
+        	
+        	// Resolve name and desc of next, prev stages and lazy loading
+        	for(Stage s : new Stage[]{stage.getNextStage(),stage.getNextAltStage(),stage.getPrevStage(),stage.getPrevAltStage()}){
+        		if(s != null) s.resolveTraduction();
+        	}
         }
         return Optional.ofNullable(stage)
             .map(result -> new ResponseEntity<>(

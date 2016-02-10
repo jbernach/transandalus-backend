@@ -34,32 +34,5 @@ angular.module('backendApp').controller('ProvinceDialogController',
             $uibModalInstance.dismiss('cancel');
         };
 
-        $scope.abbreviate = DataUtils.abbreviate;
-
-        $scope.byteSize = DataUtils.byteSize;
-
-        $scope.clearTrack = function(province){
-            province.track.content = '';
-            province.track.contentType = '';
-        };
-
-        $scope.setTrack = function ($file, province) {
-            if ($file && $file.$error == 'pattern') {
-                return;
-            }
-            if ($file) {
-                var fileReader = new FileReader();
-                fileReader.readAsText($file);
-                fileReader.onload = function (e) {
-                    var textData = e.target.result;
-                    $scope.$apply(function() {
-                        if(province.track == null){
-                            province.track = {};
-                        }
-                        province.track.content = textData;
-                        province.track.contentType = $file.type;
-                    });
-                };
-            }
-        };
+       
 }]);

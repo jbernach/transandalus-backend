@@ -5,13 +5,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 import org.transandalus.backend.domain.enumeration.Difficulty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -85,20 +84,25 @@ public class Stage implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "next_stage_id")
+    @JsonIgnoreProperties({"nextStage", "nextAltStage", "prevStage", "prevAltStage"})
     private Stage nextStage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "next_alt_stage_id")
+    @JsonIgnoreProperties({"nextStage", "nextAltStage", "prevStage", "prevAltStage"})
     private Stage nextAltStage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prev_stage_id")
+    @JsonIgnoreProperties({"nextStage", "nextAltStage", "prevStage", "prevAltStage"})
     private Stage prevStage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prev_alt_stage_id")
+    @JsonIgnoreProperties({"nextStage", "nextAltStage", "prevStage", "prevAltStage"})
     private Stage prevAltStage;
 
+    
     public Long getId() {
         return id;
     }

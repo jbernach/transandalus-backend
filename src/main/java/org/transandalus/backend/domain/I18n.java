@@ -20,7 +20,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "i18n")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class I18n implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -62,31 +62,6 @@
             </div>
         </div>
 
-        <div class="form-group" ngf-drop ngf-change="setTrack($file, province)" ngf-pattern="'.kml'">
-            <label class="control-label" translate="backendApp.province.track" for="field_track">Track (kml)</label>
-            <div>
-                <div class="help-block clearfix">
-                    <span class="pull-left">{{province.track.contentType}} {{byteSize(province.track.content)}}</span>
-                    <button ng-click="clearTrack(province);"
-                            ng-if="province.track.contentType"
-                            class="btn btn-default btn-xs pull-right">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </div>
-                <button type="file" ngf-select class="btn btn-default btn-block"
-                        ngf-change="setTrack($file, province)" accept=".kml" translate="entity.action.addblob">
-                    Add file
-                </button>
-            </div>
-            <input type="hidden" class="form-control" name="trackName" id="field_trackName"
-                    ng-model="province.track.name" />
-
-            <input type="hidden" class="form-control" name="track" id="field_track"
-                    ng-model="province.track.content"
-                     />
-            <input type="hidden" class="form-control" name="trackContentType" id="field_trackContentType"
-                    ng-model="province.track.contentType" />
-        </div>
 
     </div>
     <div class="modal-footer">
