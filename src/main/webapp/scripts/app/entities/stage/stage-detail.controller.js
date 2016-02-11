@@ -1,14 +1,11 @@
 'use strict';
 
 angular.module('backendApp')
-    .controller('StageDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Stage, Province) {
+    .controller('StageDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Stage, Province, $location) {
         $scope.stage = entity;
         $scope.load = function (id) {
             Stage.get({id: id}, function(result) {
                 $scope.stage = result;
-                if($scope.stage.track){
-                    $scope.layerOptions = {'url':'api/tracks/'+$scope.stage.track.id};    
-                }
             });
         };
         var unsubscribe = $rootScope.$on('backendApp:stageUpdate', function(event, result) {
@@ -27,4 +24,8 @@ angular.module('backendApp')
             zoom:7,
             options: {scrollwheel:false}
         };
+
+         if($scope.stage.track){
+            $scope.layerOptions = {'url':$location.url('/api/tracks/'+$scope.stage.track.id).absUrl()};    
+        }
     });
