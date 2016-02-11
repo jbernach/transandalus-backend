@@ -3,6 +3,9 @@ package org.transandalus.backend.domain;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +17,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "track")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Track implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

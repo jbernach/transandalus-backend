@@ -3,7 +3,7 @@
 angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 
     'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
     // jhipster-needle-angularjs-add-module JHipster will add new module here
-    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar','hc.marked'])
+    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar','hc.marked','uiGmapgoogle-maps'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
         // update the window title using params in the following
@@ -132,4 +132,12 @@ angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
             is: function(val) { return [true,false,0,1].indexOf(val) >= 0 },
             pattern: /bool|true|0|1/
         });
-    }]);
+    }])
+    // Angular-google-maps
+    .config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyBZpJaTfecqq6p1YpwtrJPu5hPGvKkR_N8',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
+});

@@ -35,6 +35,9 @@ module.exports = function (config) {
             'main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
             'main/webapp/bower_components/marked/lib/marked.js',
             'main/webapp/bower_components/angular-marked/dist/angular-marked.js',
+            'main/webapp/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
+            'main/webapp/bower_components/lodash/lodash.js',
+            'main/webapp/bower_components/angular-google-maps/dist/angular-google-maps.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/app.js',

@@ -127,8 +127,21 @@
                     <span translate="backendApp.stage.image">Image</span>
                 </td>
                 <td>
-                    <img data-ng-src="{{'data:' + stage.image.contentType + ';base64,' + stage.image.content}}" style="max-width: 100%;" ng-if="stage.image.contentType"/>
-                    <div>{{stage.image.contentType}}  {{byteSize(stage.image.content)}}</div>
+                    <img data-ng-src="{{stage.imageUrl}}" style="max-width: 100%;" ng-if="stage.imageUrl"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.track">Track</span>
+                </td>
+                <td>
+                    <div ng-if="stage.track.contentType">
+                        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
+                            <ui-gmap-layer type="KmlLayer" options="layerOptions"></ui-gmap-layer>
+                        </ui-gmap-google-map>
+                        <br>
+                        <div>{{stage.track.contentType}}  {{byteSize(stage.track.content)}}</div>
+                    </div>
                 </td>
             </tr>
             </tbody>

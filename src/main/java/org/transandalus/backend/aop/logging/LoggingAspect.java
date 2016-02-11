@@ -26,7 +26,7 @@ public class LoggingAspect {
     @Inject
     private Environment env;
 
-    @Pointcut("within(org.transandalus.backend.repository..*) || within(org.transandalus.backend.service..*) || within(org.transandalus.backend.web.rest..*)")
+    @Pointcut("(within(org.transandalus.backend.repository..*) || within(org.transandalus.backend.service..*) || within(org.transandalus.backend.web.rest..*)) && !target(org.transandalus.backend.web.rest.TrackResource)")
     public void loggingPointcut() {
     }
 

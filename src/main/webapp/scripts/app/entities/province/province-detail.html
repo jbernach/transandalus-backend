@@ -36,10 +36,9 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="backendApp.province.image">Image URL</span>
+                    <span translate="backendApp.province.image">Image</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{province.imageUrl}}</span>
                     <img data-ng-src="{{province.imageUrl}}" style="max-width: 100%;" ng-if="province.imageUrl"/>
                 </td>
             </tr>
@@ -48,7 +47,13 @@
                     <span translate="backendApp.province.track">Track</span>
                 </td>
                 <td>
-                    <div>{{province.track.contentType}}  {{byteSize(province.track.content)}}</div>
+                    <div ng-if="province.track.contentType">
+                        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
+                            <ui-gmap-layer type="KmlLayer" options="layerOptions"></ui-gmap-layer>
+                        </ui-gmap-google-map>
+                        <br>
+                        <div>{{province.track.contentType}}  {{byteSize(province.track.content)}}</div>
+                    </div>
                 </td>
             </tr>
             </tbody>

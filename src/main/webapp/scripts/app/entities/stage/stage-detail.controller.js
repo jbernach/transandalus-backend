@@ -6,6 +6,9 @@ angular.module('backendApp')
         $scope.load = function (id) {
             Stage.get({id: id}, function(result) {
                 $scope.stage = result;
+                if($scope.stage.track){
+                    $scope.layerOptions = {'url':'api/tracks/'+$scope.stage.track.id};    
+                }
             });
         };
         var unsubscribe = $rootScope.$on('backendApp:stageUpdate', function(event, result) {
@@ -13,5 +16,15 @@ angular.module('backendApp')
         });
         $scope.$on('$destroy', unsubscribe);
 
-         $scope.byteSize = DataUtils.byteSize;
+        $scope.byteSize = DataUtils.byteSize;
+
+        $scope.map = {
+            //Cordoba
+            center: {
+              latitude: 37.891581,
+              longitude: -4.778564
+            },
+            zoom:7,
+            options: {scrollwheel:false}
+        };
     });

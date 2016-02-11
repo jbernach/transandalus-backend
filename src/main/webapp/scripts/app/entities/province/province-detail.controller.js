@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('backendApp')
-    .controller('ProvinceDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Province) {
+    .controller('ProvinceDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Province, $location) {
         $scope.province = entity;
 
         $scope.load = function (id) {
@@ -15,4 +15,18 @@ angular.module('backendApp')
         $scope.$on('$destroy', unsubscribe);
 
         $scope.byteSize = DataUtils.byteSize;
+
+        $scope.map = {
+            //Cordoba
+            center: {
+              latitude: 37.891581,
+              longitude: -4.778564
+            },
+            zoom:7,
+            options: {scrollwheel:false}
+        };
+
+        if($scope.province.track){
+            $scope.layerOptions = {'url':$location.url('/api/tracks/'+$scope.province.track.id).absUrl()};    
+        }
     });

@@ -2,6 +2,9 @@ package org.transandalus.backend.domain;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -17,6 +20,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "translation")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class Translation implements Serializable{
 	@Id

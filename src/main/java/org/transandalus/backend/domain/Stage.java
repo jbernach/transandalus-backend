@@ -7,6 +7,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.transandalus.backend.domain.enumeration.Difficulty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  */
 @Entity
 @Table(name = "stage")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Stage implements Serializable {
 
     @Id

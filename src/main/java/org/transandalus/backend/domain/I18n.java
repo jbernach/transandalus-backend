@@ -3,6 +3,8 @@ package org.transandalus.backend.domain;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import com.fasterxml.jackson.annotation.*;
@@ -20,6 +22,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "i18n")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class I18n implements Serializable {
 	@Id
