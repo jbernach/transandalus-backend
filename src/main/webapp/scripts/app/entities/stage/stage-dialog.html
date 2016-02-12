@@ -20,20 +20,24 @@
                      />
         </div>
         
-        <div class="form-group">
+        
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        <label class="control-label" translate="backendApp.stage.description" for="field_description">Description</label>
-                        <textarea class="form-control" name="description" id="field_description" ng-model="stage.description" rows="6"></textarea>
+                        <div class="form-group">
+                            <label class="control-label" translate="backendApp.stage.description" for="field_description">Description</label>
+                            <textarea class="form-control" name="description" id="field_description" ng-model="stage.description" rows="6"></textarea>
+                        </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label class="control-label" translate="global.form.preview">Preview</label>
-                        <span class="form-control-static" marked="stage.description"></span>
+                        <div class="form-group">
+                            <label class="control-label" translate="global.form.preview">Preview</label>
+                            <span class="form-control-static" marked="stage.description"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+       
         <div class="form-group">
             <label class="control-label" translate="backendApp.stage.distanceTotal" for="field_distanceTotal">DistanceTotal</label>
             <input type="number" class="form-control" name="distanceTotal" id="field_distanceTotal"
@@ -120,6 +124,7 @@
             <label class="control-label" translate="backendApp.stage.imageURL" for="field_imageUrl">Image URL</label>
             <div>
                 <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" ng-model="stage.imageUrl" />
+                <br>
                 <img data-ng-src="{{stage.imageUrl}}" style="max-height: 100px;" ng-if="stage.imageUrl"/>
             </div>
         </div>

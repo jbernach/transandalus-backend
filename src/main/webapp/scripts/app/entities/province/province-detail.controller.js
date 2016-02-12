@@ -27,6 +27,8 @@ angular.module('backendApp')
         };
 
         if($scope.province.track){
-            $scope.layerOptions = {'url':$location.url('/api/tracks/'+$scope.province.track.id).absUrl()};    
+            var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+$scope.province.track.id;
+            $scope.map.kmlLayerOptions = {'url':url};
+            console.debug(url)
         }
     });
