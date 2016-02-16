@@ -1,151 +1,152 @@
 
 <div>
     <h2><span translate="backendApp.stage.detail.title">Stage</span> {{stage.id}}</h2>
-    <table class="table table-striped table-condensed">
-        <thead>
-        <tr>
-            <th translate="entity.detail.field">Field</th>
-            <th translate="entity.detail.value">Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.name">Name</span>
-            </td>
-            <td>
-                <span class="form-control-static">{{stage.name}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.description">Description</span>
-            </td>
-            <td>
-                <span class="form-control-static" marked="stage.description"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.distanceTotal">DistanceTotal</span>
-            </td>
-            <td>
-                <span class="form-control-static">{{stage.distanceTotal}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.distanceRoad" class="text-nowrap">DistanceRoad (km)</span>
-            </td>
-            <td>
-                <span class="form-control-static">{{stage.distanceRoad}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.estimatedTime">EstimatedTime</span>
-            </td>
-            <td>
-                <span class="form-control-static">{{stage.estimatedTime}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.elevation">Elevation</span>
-            </td>
-            <td>
-                <span class="form-control-static">{{stage.elevation}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.difficultyPhys">DifficultyPhys</span>
-            </td>
-            <td>
-                <span class="form-control-static" translate="{{'backendApp.Difficulty.' + stage.difficultyPhys}}">{{stage.difficultyPhys}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.difficultyTech">DifficultyTech</span>
-            </td>
-            <td>
-                <span class="form-control-static" translate="{{'backendApp.Difficulty.' + stage.difficultyTech}}">{{stage.difficultyTech}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.galleryURL">GalleryURL</span>
-            </td>
-            <td>
-                <span class="form-control-static">{{stage.galleryURL}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.province">province</span>
-            </td>
-            <td>
-                <a class="form-control-static" ui-sref="province.detail({id:stage.province.id})">{{stage.province.name}}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.nextStage">nextStage</span>
-            </td>
-            <td>
-                <a class="form-control-static" ui-sref="stage.detail({id:stage.nextStage.id})">{{stage.nextStage.name}}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.nextAltStage">nextAltStage</span>
-            </td>
-            <td>
-                <a class="form-control-static" ui-sref="stage.detail({id:stage.nextAltStage.id})">{{stage.nextAltStage.name}}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.prevStage">prevStage</span>
-            </td>
-            <td>
-                <a class="form-control-static" ui-sref="stage.detail({id:stage.prevStage.id})">{{stage.prevStage.name}}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.prevAltStage">prevAltStage</span>
-            </td>
-            <td>
-                <a class="form-control-static" ui-sref="stage.detail({id:stage.prevAltStage.id})">{{stage.prevAltStage.name}}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.image">Image</span>
-            </td>
-            <td>
-                <img data-ng-src="{{stage.imageUrl}}" style="max-width: 100%;" ng-if="stage.imageUrl"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span translate="backendApp.stage.track">Track</span>
-            </td>
-            <td>
-                <div ng-if="stage.track.contentType">
-                    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
-                        <ui-gmap-layer type="KmlLayer" options="map.kmlLayerOptions"></ui-gmap-layer>
-                    </ui-gmap-google-map>
-                    <br>
-                    <div>{{stage.track.contentType}}  {{byteSize(stage.track.content)}}</div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.name">Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{stage.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static" marked="stage.description"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.distanceTotal">DistanceTotal</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{stage.distanceTotal}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.distanceRoad" class="text-nowrap">DistanceRoad (km)</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{stage.distanceRoad}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.estimatedTime">EstimatedTime</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{stage.estimatedTime}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.elevation">Elevation</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{stage.elevation}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.difficultyPhys">DifficultyPhys</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'backendApp.Difficulty.' + stage.difficultyPhys}}">{{stage.difficultyPhys}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.difficultyTech">DifficultyTech</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'backendApp.Difficulty.' + stage.difficultyTech}}">{{stage.difficultyTech}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.galleryURL">GalleryURL</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{stage.galleryURL}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.province">province</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="province.detail({id:stage.province.id})">{{stage.province.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.nextStage">nextStage</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="stage.detail({id:stage.nextStage.id})">{{stage.nextStage.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.nextAltStage">nextAltStage</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="stage.detail({id:stage.nextAltStage.id})">{{stage.nextAltStage.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.prevStage">prevStage</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="stage.detail({id:stage.prevStage.id})">{{stage.prevStage.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.prevAltStage">prevAltStage</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="stage.detail({id:stage.prevAltStage.id})">{{stage.prevAltStage.name}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.image">Image</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{stage.imageUrl}}" style="max-width: 100%;" ng-if="stage.imageUrl"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="backendApp.stage.track">Track</span>
+                </td>
+                <td>
+                    <div ng-if="stage.track.contentType">
+                        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options">
+                            <ui-gmap-layer type="KmlLayer" options="map.kmlLayerOptions"></ui-gmap-layer>
+                        </ui-gmap-google-map>
+                        <br>
+                        <div>{{stage.track.contentType}}  {{byteSize(stage.track.content)}}</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">

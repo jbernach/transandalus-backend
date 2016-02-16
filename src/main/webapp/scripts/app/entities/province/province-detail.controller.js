@@ -26,9 +26,14 @@ angular.module('backendApp')
             options: {scrollwheel:false}
         };
 
-        if($scope.province.track){
-            var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+$scope.province.track.id;
-            $scope.map.kmlLayerOptions = {'url':url};
-            console.debug(url)
+
+        if($scope.province.$promise){
+            $scope.province.$promise.then(function(el){
+                if(el.track){
+                    var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+el.track.id;
+                    $scope.map.kmlLayerOptions = {'url':url};
+                }
+          });
         }
+         
     });

@@ -25,9 +25,12 @@ angular.module('backendApp')
             options: {scrollwheel:false}
         };
 
-         if($scope.stage.track){
-            var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+$scope.stage.track.id;
-            $scope.map.kmlLayerOptions = {'url':url};
-            console.debug(url)
+        if($scope.stage.$promise){
+            $scope.stage.$promise.then(function(el){
+                if(el.track){
+                    var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+el.track.id;
+                    $scope.map.kmlLayerOptions = {'url':url};
+                }
+            });
         }
     });
