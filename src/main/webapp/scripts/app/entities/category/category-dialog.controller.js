@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('backendApp').controller('CategoryDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Category',
-        function($scope, $stateParams, $uibModalInstance, entity, Category) {
+    ['$scope', '$stateParams', '$uibModalInstance','entity', 'Category', '$translate',
+        function($scope, $stateParams, $uibModalInstance, entity, Category, $translate) {
+
+        $scope.language = $translate.use();
 
         $scope.category = entity;
         $scope.load = function(id) {

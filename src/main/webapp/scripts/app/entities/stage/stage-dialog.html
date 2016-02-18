@@ -15,6 +15,7 @@
         </div>
         <div class="form-group">
             <label class="control-label" translate="backendApp.stage.name" for="field_name">Name</label>
+            <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
             <input type="text" class="form-control" name="name" id="field_name"
                     ng-model="stage.name"
                      />
@@ -26,7 +27,8 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label class="control-label" translate="backendApp.stage.description" for="field_description">Description</label>
-                            <textarea class="form-control" name="description" id="field_description" ng-model="stage.description" rows="6"></textarea>
+                            <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
+                            <textarea class="form-control" name="description" id="field_description" ng-model="stage.description" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">

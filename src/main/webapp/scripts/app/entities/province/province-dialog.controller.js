@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('backendApp').controller('ProvinceDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Province',
-        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Province) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Province', '$translate',
+        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Province, $translate) {
+
+        $scope.language = $translate.use();
 
         $scope.province = entity;
         $scope.load = function(id) {

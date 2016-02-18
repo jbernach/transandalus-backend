@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('backendApp').controller('StageDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Stage', 'Province',
-        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Stage, Province) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Stage', 'Province', '$translate',
+        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Stage, Province, $translate) {
 
+        $scope.language = $translate.use();
+        
         $scope.stage = entity;
         $scope.provinces = Province.query();
         $scope.stages = Stage.query();
