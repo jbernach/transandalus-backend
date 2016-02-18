@@ -9,6 +9,7 @@
                 "main": "Tablas",
                 "province": "Provincias",
                 "stage": "Etapas",
+                "category": "Categorías",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
