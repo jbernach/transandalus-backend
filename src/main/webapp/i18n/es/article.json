@@ -1,0 +1,24 @@
+{
+    "backendApp": {
+        "article" : {
+            "home": {
+                "title": "Artículos",
+                "createLabel": "Crear nuevo Artículo",
+                "createOrEditLabel": "Crear o editar Artículo",
+                "search": "Buscar Artículo"
+            },
+            "created": "Un nuevo Artículo ha sido creado con el identificador {{ param }}",
+            "updated": "Un Artículo ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Artículo ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el Artículo {{ id }}?"
+            },
+            "detail": {
+                "title": "Artículo"
+            },
+            "title": "Título",
+            "text": "Texto",
+            "category": "Categoría"
+        }
+    }
+}

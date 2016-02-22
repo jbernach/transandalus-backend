@@ -7,9 +7,10 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
-                "province": "Province",
-                "stage": "Stage",
-                "category": "Category",
+                "province": "Provinces",
+                "stage": "Stages",
+                "category": "Categories",
+                "article": "Articles",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
