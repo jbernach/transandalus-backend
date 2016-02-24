@@ -9,6 +9,7 @@ import org.transandalus.backend.web.rest.util.HeaderUtil;
 import org.transandalus.backend.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -111,10 +112,11 @@ public class StageResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Stage>> getAllStages(Pageable pageable)
+    public ResponseEntity<List<Stage>> getAllStages(Pageable pageable, @RequestParam(value="filter",defaultValue = "") String filter)
         throws URISyntaxException {
         log.debug("REST request to get a page of Stages");
-        Page<Stage> page = stageRepository.findAll(pageable);
+        
+        Page<Stage> page = (filter.length() == 0)?stageRepository.findAll(pageable):stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage());
         page.getContent().stream().forEach(s -> {
         	s.resolveTraduction();
         	s.getProvince().resolveTraduction();

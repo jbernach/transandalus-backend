@@ -7,8 +7,10 @@ angular.module('backendApp')
         $scope.predicate = 'id';
         $scope.reverse = true;
         $scope.page = 1;
+        $scope.filter = '';
+
         $scope.loadAll = function() {
-            Stage.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']}, function(result, headers) {
+            Stage.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id'], filter: $scope.filter}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.totalItems = headers('X-Total-Count');
                 $scope.stages = result;

@@ -1,6 +1,7 @@
 <div>
     <h2 translate="backendApp.stage.home.title">Stages</h2>
     <jh-alert></jh-alert>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
@@ -11,9 +12,16 @@
                     </span>
                 </button>
             </div>
+
+            <div class="col-xs-8">
+                <div class="form-group pull-right">
+                    <input type="text" ng-model="filter" class="form-control" placeholder="{{ 'backendApp.stage.home.search' | translate }}" ng-keydown="$event.which === 13 && loadAll()">
+                </div>
+            </div>
         </div>
     </div>
     <br/>
+
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
