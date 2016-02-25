@@ -1,0 +1,24 @@
+{
+    "backendApp": {
+        "menuItem" : {
+            "home": {
+                "title": "Entradas de menú",
+                "createLabel": "Crear nueva Entrada de menú",
+                "createOrEditLabel": "Crear o editar Entrada de menú",
+                "search": "Buscar Entrada de menú"
+            },
+            "created": "Una nueva Entrada de menú ha sido creada con el identificador {{ param }}",
+            "updated": "Una Entrada de menú ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una Entrada de menú ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar la Entrada de menú {{ id }}?"
+            },
+            "detail": {
+                "title": "Entrada de menú"
+            },
+            "text": "Texto",
+            "url": "Url",
+            "menu": "Menú"
+        }
+    }
+}

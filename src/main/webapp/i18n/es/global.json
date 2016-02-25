@@ -12,6 +12,7 @@
                 "category": "Categorías",
                 "article": "Artículos",
                 "menu": "Menús",
+                "menuItem": "Entradas de menú",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

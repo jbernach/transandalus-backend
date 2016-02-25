@@ -1,0 +1,24 @@
+{
+    "backendApp": {
+        "menuItem" : {
+            "home": {
+                "title": "Menu items",
+                "createLabel": "Create a new Menu item",
+                "createOrEditLabel": "Create or edit a Menu item",
+                "search": "Search for Menu item"
+            },
+            "created": "A new Menu item is created with identifier {{ param }}",
+            "updated": "A Menu item is updated with identifier {{ param }}",
+            "deleted": "A Menu item is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Menu item {{ id }}?"
+            },
+            "detail": {
+                "title": "Menu item"
+            },
+            "text": "Text",
+            "url": "Url",
+            "menu": "Menu"
+        }
+    }
+}

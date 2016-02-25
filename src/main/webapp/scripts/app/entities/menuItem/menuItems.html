@@ -1,0 +1,63 @@
+<div>
+    <h2 translate="backendApp.menuItem.home.title">MenuItems</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="menuItem.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+                        translate="backendApp.menuItem.home.createLabel">Create new MenuItem
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="text"><span translate="backendApp.menuItem.text">Text</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="url"><span translate="backendApp.menuItem.url">Url</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="menu.name"><span translate="backendApp.menuItem.menu">menu</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="menuItem in menuItems track by menuItem.id">
+                    <td><a ui-sref="menuItem.detail({id:menuItem.id})">{{menuItem.id}}</a></td>
+                    <td>{{menuItem.text}}</td>
+                    <td>{{menuItem.url}}</td>
+                    <td>
+                        <a ui-sref="menu.detail({id:menuItem.menu.id})">{{menuItem.menu.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="menuItem.detail({id:menuItem.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="menuItem.edit({id:menuItem.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="menuItem.delete({id:menuItem.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>
