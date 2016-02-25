@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 
 import org.transandalus.backend.domain.I18n;
 import org.transandalus.backend.domain.MenuItem;
-import org.transandalus.backend.domain.Province;
 import org.transandalus.backend.repository.MenuItemRepository;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
 import org.transandalus.backend.web.rest.util.PaginationUtil;
