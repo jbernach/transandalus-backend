@@ -92,10 +92,10 @@ public class MenuItemResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<MenuItem>> getAllMenuItems(Pageable pageable)
+    public ResponseEntity<List<MenuItem>> getAllMenuItems(Pageable pageable, @RequestParam(value="menu", required = false) Long menu)
         throws URISyntaxException {
         log.debug("REST request to get a page of MenuItems");
-        Page<MenuItem> page = menuItemRepository.findAll(pageable);
+        Page<MenuItem> page = (menu != null)?menuItemRepository.findByMenuId(pageable, menu):menuItemRepository.findAll(pageable);
         page.getContent().stream().forEach(p -> {
         	p.resolveTraduction();
         });
