@@ -112,11 +112,11 @@ public class StageResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Stage>> getAllStages(Pageable pageable, @RequestParam(value="filter",defaultValue = "") String filter)
+    public ResponseEntity<List<Stage>> getAllStages(Pageable pageable, @RequestParam(value="filter", required = false) String filter, @RequestParam(value="province", required = false) Long province)
         throws URISyntaxException {
         log.debug("REST request to get a page of Stages");
         
-        Page<Stage> page = (filter.length() == 0)?stageRepository.findAll(pageable):stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage());
+        Page<Stage> page = (province != null)?stageRepository.findByProvinceId(pageable, province):(filter != null)?stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage()):stageRepository.findAll(pageable);
         page.getContent().stream().forEach(s -> {
         	s.resolveTraduction();
         	s.getProvince().resolveTraduction();
