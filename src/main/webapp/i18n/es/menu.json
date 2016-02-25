@@ -1,0 +1,22 @@
+{
+    "backendApp": {
+        "menu" : {
+            "home": {
+                "title": "Menús",
+                "createLabel": "Crear nuevo Menú",
+                "createOrEditLabel": "Crear o editar Menú",
+                "search": "Burcar Menu"
+            },
+            "created": "Un nuevo Menú ha sido creado con el identificador {{ param }}",
+            "updated": "Un Menú ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Menú ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el Menú {{ id }}?"
+            },
+            "detail": {
+                "title": "Menú"
+            },
+            "name": "Nombre"
+        }
+    }
+}
