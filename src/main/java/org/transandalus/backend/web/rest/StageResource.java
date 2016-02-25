@@ -116,7 +116,7 @@ public class StageResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of Stages");
         
-        Page<Stage> page = (province != null)?stageRepository.findByProvinceId(pageable, province):(filter != null)?stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage()):stageRepository.findAll(pageable);
+        Page<Stage> page = (province != null)?stageRepository.findByProvinceId(pageable, province):(filter != null && filter.length() > 0)?stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage()):stageRepository.findAll(pageable);
         page.getContent().stream().forEach(s -> {
         	s.resolveTraduction();
         	s.getProvince().resolveTraduction();
