@@ -77,8 +77,9 @@ public class MenuItemResource {
         result.setText(menuItem.getText());
         result.setUrl(menuItem.getUrl());
         result.setMenu(menuItem.getMenu());
-      
-        result = menuItemRepository.save(menuItem);
+        result.setOrder(menuItem.getOrder());
+        
+        result = menuItemRepository.save(result);
         
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("menuItem", menuItem.getId().toString()))

@@ -41,6 +41,10 @@ public class MenuItem implements Serializable {
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
+    @NotNull
+    @Column(name = "`order`", nullable = false)
+    private Integer order;
+    
     public Long getId() {
         return id;
     }
@@ -81,6 +85,14 @@ public class MenuItem implements Serializable {
         this.menu = menu;
     }
 
+    public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) {

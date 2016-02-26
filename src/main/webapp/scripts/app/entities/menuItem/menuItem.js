@@ -57,13 +57,14 @@ angular.module('backendApp')
                     $uibModal.open({
                         templateUrl: 'scripts/app/entities/menuItem/menuItem-dialog.html',
                         controller: 'MenuItemDialogController',
-                        size: 'lg',
+                        size: 'md',
                         resolve: {
                             entity: function () {
                                 return {
                                     text: null,
                                     url: null,
-                                    id: null
+                                    id: null,
+                                    order: 1
                                 };
                             }
                         }
@@ -84,7 +85,7 @@ angular.module('backendApp')
                     $uibModal.open({
                         templateUrl: 'scripts/app/entities/menuItem/menuItem-dialog.html',
                         controller: 'MenuItemDialogController',
-                        size: 'lg',
+                        size: 'md',
                         resolve: {
                             entity: ['MenuItem', function(MenuItem) {
                                 return MenuItem.get({id : $stateParams.id});

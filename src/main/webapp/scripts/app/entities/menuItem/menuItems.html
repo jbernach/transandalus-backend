@@ -22,6 +22,7 @@
                     <th jh-sort-by="text"><span translate="backendApp.menuItem.text">Text</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="url"><span translate="backendApp.menuItem.url">Url</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="menu.name"><span translate="backendApp.menuItem.menu">menu</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="menu.order"><span translate="backendApp.menuItem.order">order</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                     <td>
                         <a ui-sref="menu.detail({id:menuItem.menu.id})">{{menuItem.menu.name}}</a>
                     </td>
+                    <td>{{menuItem.order}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

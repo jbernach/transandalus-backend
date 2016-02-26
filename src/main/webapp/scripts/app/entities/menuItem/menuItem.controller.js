@@ -30,7 +30,8 @@ angular.module('backendApp')
             $scope.menuItem = {
                 text: null,
                 url: null,
-                id: null
+                id: null,
+                order: 1
             };
         };
     });

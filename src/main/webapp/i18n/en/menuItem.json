@@ -18,7 +18,8 @@
             },
             "text": "Text",
             "url": "Url",
-            "menu": "Menu"
+            "menu": "Menu",
+            "order": "Order"
         }
     }
 }
