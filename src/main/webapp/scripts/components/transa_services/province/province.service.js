@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('backendApp')
-    .factory('Stage', function ($resource, DateUtils) {
-        return $resource('api/stages/:id', {}, {
+angular.module('transaServices')
+    .factory('Province', function ($resource) {
+        return $resource('api/provinces/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

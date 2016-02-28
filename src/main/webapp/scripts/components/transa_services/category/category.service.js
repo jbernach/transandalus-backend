@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('backendApp')
-    .factory('Category', function ($resource, DateUtils) {
+angular.module('transaServices')
+    .factory('Category', function ($resource) {
         return $resource('api/categories/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {

@@ -74,6 +74,7 @@ public class MenuItemResourceIntTest {
         menuItem = new MenuItem();
         menuItem.setText(DEFAULT_TEXT);
         menuItem.setUrl(DEFAULT_URL);
+        menuItem.setOrder(1);
     }
 
     @Test
