@@ -1,7 +1,6 @@
 package org.transandalus.backend.service;
 
 import org.transandalus.backend.domain.Authority;
-import org.transandalus.backend.domain.PersistentToken;
 import org.transandalus.backend.domain.User;
 import org.transandalus.backend.repository.AuthorityRepository;
 import org.transandalus.backend.repository.PersistentTokenRepository;
@@ -18,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.ZonedDateTime;
 import javax.inject.Inject;
 import java.util.*;
 

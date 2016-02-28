@@ -9,7 +9,6 @@ import org.springframework.context.annotation.*;
 import org.springframework.cache.support.NoOpCacheManager; 
 
 import javax.annotation.PreDestroy;
-import javax.inject.Inject;
 
 @Configuration
 @EnableCaching

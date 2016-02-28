@@ -9,7 +9,6 @@ import org.transandalus.backend.security.AuthoritiesConstants;
 import org.transandalus.backend.service.MailService;
 import org.transandalus.backend.service.UserService;
 import org.transandalus.backend.web.rest.dto.ManagedUserDTO;
-import org.transandalus.backend.web.rest.dto.UserDTO;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
 import org.transandalus.backend.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;

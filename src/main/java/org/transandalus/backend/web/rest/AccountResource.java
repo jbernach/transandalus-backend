@@ -1,7 +1,6 @@
 package org.transandalus.backend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import org.transandalus.backend.domain.Authority;
 import org.transandalus.backend.domain.PersistentToken;
 import org.transandalus.backend.domain.User;
 import org.transandalus.backend.repository.PersistentTokenRepository;

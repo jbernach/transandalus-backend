@@ -1,7 +1,6 @@
 package org.transandalus.backend.security;
 
 import org.transandalus.backend.domain.PersistentToken;
-import org.transandalus.backend.domain.User;
 import org.transandalus.backend.repository.PersistentTokenRepository;
 import org.transandalus.backend.repository.UserRepository;
 import org.slf4j.Logger;
