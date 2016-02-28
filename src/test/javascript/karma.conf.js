@@ -40,6 +40,8 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-google-maps/dist/angular-google-maps.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
+            'main/webapp/scripts/components/transa_services/module.js',
+            'main/webapp/scripts/components/transa_services/**/*.js',
             'main/webapp/scripts/app/app.js',
             'main/webapp/scripts/app/**/*.js',
             'main/webapp/scripts/components/**/*.+(js|html)',
