@@ -109,16 +109,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/account/reset_password/init").permitAll()
             .antMatchers("/api/account/reset_password/finish").permitAll()
+            .antMatchers("/api/account/change_password").hasAuthority(AuthoritiesConstants.USER)
+            .antMatchers("/api/account/sessions/**").hasAuthority(AuthoritiesConstants.USER)
             .antMatchers("/api/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/audits/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers(HttpMethod.GET, "/api/provinces/**").permitAll()
+            /*.antMatchers(HttpMethod.GET, "/api/provinces/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/stages/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/tracks/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/articles/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/menus/**").permitAll()
-            .antMatchers(HttpMethod.GET, "/api/menuItems/**").permitAll()
-            .antMatchers("/api/**").authenticated()
+            .antMatchers(HttpMethod.GET, "/api/menuItems/**").permitAll()*/
+            .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+            .antMatchers("/api/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
@@ -136,7 +139,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/security").permitAll()
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/protected/**").authenticated() ;
+            .antMatchers("/protected/**").hasAuthority(AuthoritiesConstants.ADMIN);
 
     }
 

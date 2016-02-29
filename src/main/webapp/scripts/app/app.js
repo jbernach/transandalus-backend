@@ -72,7 +72,7 @@ angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, AlertServiceProvider) {
         // uncomment below to make alerts look like toast
-        //AlertServiceProvider.showAsToast(true);
+        AlertServiceProvider.showAsToast(true);
 
         //enable CSRF
         $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
