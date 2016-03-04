@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-
+import org.apache.commons.lang.WordUtils;
 
 
 import javax.inject.Inject;
@@ -105,4 +105,15 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
     }
     
+    @Async
+    public void sendSocialRegistrationValidationEmail(User user, String provider) {
+        log.debug("Sending social registration validation e-mail to '{}'", user.getEmail());
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable("user", user);
+        context.setVariable("provider", WordUtils.capitalize(provider));
+        String content = templateEngine.process("socialRegistrationValidationEmail", context);
+        String subject = messageSource.getMessage("email.social.registration.title", null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
+    }
 }

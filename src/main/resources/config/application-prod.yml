@@ -29,9 +29,10 @@ spring:
         database: MYSQL
         show_sql: false
         properties:
-            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
     mail:
         host: localhost
         port: 25
@@ -57,6 +58,10 @@ jhipster:
     http:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 31
+    cache: # Hibernate 2nd level cache, used by CacheConfiguration
+        timeToLiveSeconds: 3600
+        ehcache:
+            maxBytesLocalHeap: 64M
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: backend@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
