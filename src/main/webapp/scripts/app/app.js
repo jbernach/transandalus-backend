@@ -151,7 +151,7 @@ angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
     // Angular-google-maps
     .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBZpJaTfecqq6p1YpwtrJPu5hPGvKkR_N8',
+        key: 'AIzaSyA0GaaEWidwLtS1CZ2irjrxE9lTBEqHsBE',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
