@@ -72,7 +72,7 @@ public class SocialServiceIntTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreateSocialUserShouldThrowExceptionIfConnectionIsNull() {
         // Exercise
-        socialService.createSocialUser(null, "fr");
+        socialService.createSocialUser(null, "es");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -85,7 +85,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -104,7 +104,7 @@ public class SocialServiceIntTest {
         // Exercise
         try {
             // Exercise
-            socialService.createSocialUser(connection, "fr");
+            socialService.createSocialUser(connection, "es");
         } finally {
             // Teardown
             userRepository.delete(user);
@@ -121,7 +121,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         // Verify
         final Optional<User> user = userRepository.findOneByEmail("mail@mail.com");
@@ -141,7 +141,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         User user = userRepository.findOneByEmail("mail@mail.com").get();
@@ -162,7 +162,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         User user = userRepository.findOneByEmail("mail@mail.com").get();
@@ -185,11 +185,11 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         final User user = userRepository.findOneByEmail("mail@mail.com").get();
-        assertThat(user.getLangKey()).isEqualTo("fr");
+        assertThat(user.getLangKey()).isEqualTo("es");
 
         // Teardown
         userRepository.delete(user);
@@ -205,7 +205,7 @@ public class SocialServiceIntTest {
             "PROVIDER_OTHER_THAN_TWITTER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         User user = userRepository.findOneByEmail("mail@mail.com").get();
@@ -225,7 +225,7 @@ public class SocialServiceIntTest {
             "twitter");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         User user = userRepository.findOneByEmail("mail@mail.com").get();
@@ -245,7 +245,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         verify(mockConnectionRepository, times(1)).addConnection(connection);
@@ -270,7 +270,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         assertThat(userRepository.count()).isEqualTo(initialUserCount);
@@ -295,7 +295,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         User userToVerify = userRepository.findOneByEmail("mail@mail.com").get();
@@ -317,7 +317,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.createSocialUser(connection, "es");
 
         //Verify
         verify(mockMailService, times(1)).sendSocialRegistrationValidationEmail(anyObject(), anyString());

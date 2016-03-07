@@ -27,7 +27,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
     @Size(min = 1, max = 100)
     @Column(length = 100, unique = true, nullable = false)
     private String login;
