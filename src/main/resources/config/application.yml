@@ -32,13 +32,13 @@ spring:
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: xxx
-            clientSecret: xxx
+            clientId: ${CLIENT_ID_FACEBOOK}
+            clientSecret: ${CLIENT_SECRET_FACEBOOK}
 
         # see https://apps.twitter.com/app/
         twitter:
-            clientId: xxx
-            clientSecret: xxx
+            clientId: ${CLIENT_ID_TWITTER}
+            clientSecret: ${CLIENT_SECRET_TWITTER}
 
         # jhipster-needle-add-social-configuration
 
