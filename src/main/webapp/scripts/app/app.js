@@ -29,7 +29,6 @@ angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
             if (Principal.isIdentityResolved()) {
                 Auth.authorize();
             }
-			
             
             // Update the language
             Language.getCurrent().then(function (language) {
@@ -133,10 +132,26 @@ angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
             pattern: /bool|true|0|1/
         });
     }])
+    
+    .config(['$compileProvider', 'ENV',function($compileProvider, ENV){
+        // disable debug data on prod profile to improve performance
+        if(ENV === 'prod'){
+            $compileProvider.debugInfoEnabled(false);
+        }
+
+        /*
+        If you wish to debug an application with this information
+        then you should open up a debug console in the browser
+        then call this method directly in this console:
+
+        angular.reloadWithDebugInfo();
+        */
+    }])
+
     // Angular-google-maps
     .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBZpJaTfecqq6p1YpwtrJPu5hPGvKkR_N8',
+        key: 'AIzaSyA0GaaEWidwLtS1CZ2irjrxE9lTBEqHsBE',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });

@@ -1,6 +1,8 @@
 package org.transandalus.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -17,6 +19,7 @@ import java.time.ZonedDateTime;
  */
 @Entity
 @Table(name = "jhi_user")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends AbstractAuditingEntity implements Serializable {
 
     @Id
@@ -24,9 +27,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
-    @Size(min = 1, max = 50)
-    @Column(length = 50, unique = true, nullable = false)
+    @Size(min = 1, max = 100)
+    @Column(length = 100, unique = true, nullable = false)
     private String login;
 
     @JsonIgnore
@@ -73,10 +75,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
         name = "jhi_user_authority",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Authority> authorities = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PersistentToken> persistentTokens = new HashSet<>();
 
     public Long getId() {

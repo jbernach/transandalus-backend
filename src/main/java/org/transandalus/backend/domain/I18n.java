@@ -32,6 +32,7 @@ public class I18n implements Serializable {
 
 	@OneToMany(mappedBy = "i18n", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@MapKey(name = "idLocale")
+	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private Map<String, Translation> translations = new HashMap<String, Translation>();
 	
 	public Long getId() {

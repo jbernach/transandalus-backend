@@ -33,6 +33,7 @@ public class JHipsterProperties {
 
     private final CorsConfiguration cors = new CorsConfiguration();
 
+    private final Social social = new Social();
 
 
     public Async getAsync() {
@@ -71,6 +72,9 @@ public class JHipsterProperties {
         return cors;
     }
 
+    public Social getSocial() {
+        return social;
+    }
 
     public static class Async {
 
@@ -174,12 +178,31 @@ public class JHipsterProperties {
 
         private int timeToLiveSeconds = 3600;
 
+        private final Ehcache ehcache = new Ehcache();
+
         public int getTimeToLiveSeconds() {
             return timeToLiveSeconds;
         }
 
         public void setTimeToLiveSeconds(int timeToLiveSeconds) {
             this.timeToLiveSeconds = timeToLiveSeconds;
+        }
+
+        public Ehcache getEhcache() {
+            return ehcache;
+        }
+
+        public static class Ehcache {
+
+            private String maxBytesLocalHeap = "16M";
+
+            public String getMaxBytesLocalHeap() {
+                return maxBytesLocalHeap;
+            }
+
+            public void setMaxBytesLocalHeap(String maxBytesLocalHeap) {
+                this.maxBytesLocalHeap = maxBytesLocalHeap;
+            }
         }
     }
 
@@ -399,6 +422,19 @@ public class JHipsterProperties {
             public void setPrefix(String prefix) {
                 this.prefix = prefix;
             }
+        }
+    }
+
+    public static class Social {
+
+        private String redirectAfterSignIn = "/#/home";
+
+        public String getRedirectAfterSignIn() {
+            return redirectAfterSignIn;
+        }
+
+        public void setRedirectAfterSignIn(String redirectAfterSignIn) {
+            this.redirectAfterSignIn = redirectAfterSignIn;
         }
     }
 }

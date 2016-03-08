@@ -1,0 +1,15 @@
+{
+    "social": {
+        "btnLabel": "Login con {{ label }}",
+        "register": {
+            "title": "Registrarse con {{ label }}",
+            "errorTitle": "Registro con cuenta social",
+            "messages": {
+                "success": "<strong>¡Registro guardado!</strong> Por favor, revise la confirmación en su email.",
+                "error": {
+                    "fail": "<strong>Registro fallido.</strong> Ha ocurrido un error validando su cuenta, le recomendamos usar otro tipo de cuenta."
+                }
+            }
+        }
+    }
+}
