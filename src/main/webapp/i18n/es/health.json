@@ -4,6 +4,13 @@
         "refresh.button": "Refrescar",
         "health.details.details": "Detalles",
         "stacktrace": "Stacktrace",
+        "details": {
+            "details": "Detalles",
+            "properties": "Propiedades",
+            "name": "Nombre",
+            "value": "Valor",
+            "error": "Error"
+        },
         "indicator": {
             "diskSpace": "Espacio en disco",
             "mail": "Email",
