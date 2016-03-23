@@ -129,3 +129,7 @@ Desktop.ini
 /.apt_generated/
 .factorypath
 env_variables.txt
+server_deployment/amazon_ec2_setup.txt
+server_deployment/backend.txt
+server_deployment/nginx.conf
+server_deployment/secrets.txt
