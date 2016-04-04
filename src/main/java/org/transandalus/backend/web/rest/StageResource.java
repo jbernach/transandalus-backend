@@ -119,7 +119,9 @@ public class StageResource {
         Page<Stage> page = (province != null)?stageRepository.findByProvinceId(pageable, province):(filter != null && filter.length() > 0)?stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage()):stageRepository.findAll(pageable);
         page.getContent().stream().forEach(s -> {
         	s.resolveTraduction();
-        	s.getProvince().resolveTraduction();
+        	if(s.getProvince() != null){
+        		s.getProvince().resolveTraduction();
+        	}
         });
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/stages");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -138,9 +140,12 @@ public class StageResource {
         Stage stage = stageRepository.findOne(id);
         if(stage != null){
         	stage.resolveTraduction();
-        	stage.getProvince().resolveTraduction();
-        	stage.getTrack().getContentType(); // Lazy
-        	
+        	if(stage.getProvince() != null){
+        		stage.getProvince().resolveTraduction();
+        	}
+        	if(stage.getTrack() != null){
+        		stage.getTrack().getContentType(); // Lazy
+        	}
         	// Resolve name and desc of next, prev stages and lazy loading
         	for(Stage s : new Stage[]{stage.getNextStage(),stage.getNextAltStage(),stage.getPrevStage(),stage.getPrevAltStage()}){
         		if(s != null) s.resolveTraduction();
