@@ -35,7 +35,8 @@ public class JHipsterProperties {
 
     private final Social social = new Social();
 
-
+    private final ReCaptcha recaptcha = new ReCaptcha();
+    
     public Async getAsync() {
         return async;
     }
@@ -76,7 +77,11 @@ public class JHipsterProperties {
         return social;
     }
 
-    public static class Async {
+    public ReCaptcha getRecaptcha() {
+		return recaptcha;
+	}
+
+	public static class Async {
 
         private int corePoolSize = 2;
 
@@ -436,5 +441,18 @@ public class JHipsterProperties {
         public void setRedirectAfterSignIn(String redirectAfterSignIn) {
             this.redirectAfterSignIn = redirectAfterSignIn;
         }
+    }
+    
+    public static class ReCaptcha{
+    	private String secret = "";
+
+		public String getSecret() {
+			return secret;
+		}
+
+		public void setSecret(String secret) {
+			this.secret = secret;
+		}
+    	
     }
 }

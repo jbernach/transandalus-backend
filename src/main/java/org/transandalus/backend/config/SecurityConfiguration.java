@@ -52,6 +52,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Inject
     private CorsFilter corsFilter;
     
+    @Inject
+    private CustomWebAuthenticationDetailsSource authenticationDetailsSource;
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -93,6 +96,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .key(env.getProperty("jhipster.security.rememberme.key"))
         .and()
             .formLogin()
+            .authenticationDetailsSource(authenticationDetailsSource)
             .loginProcessingUrl("/api/authentication")
             .successHandler(ajaxAuthenticationSuccessHandler)
             .failureHandler(ajaxAuthenticationFailureHandler)

@@ -50,6 +50,7 @@ describe('Controller Tests', function() {
             $scope.$apply($scope.register); // $q promises require an $apply
             // then
             expect(MockAuth.createAccount).toHaveBeenCalledWith({
+                recaptcha: {},
                 password: 'password',
                 langKey: 'en'
             });

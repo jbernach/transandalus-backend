@@ -22,6 +22,10 @@
             <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">
                 The password and its confirmation do not match!
             </div>
+
+            <div class="alert alert-danger" ng-show="recaptchaInvalid" translate="global.messages.validate.recaptcha.invalid">
+                Invalid human verification!
+            </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
             <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
@@ -112,12 +116,17 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <div vc-recaptcha ng-model="registerAccount.recaptcha.response" key="'6LfVxBwTAAAAAFJrmiknb_ihbdqKPKMBmF9SxkoL'" on-create="setWidgetId(widgetId)"></div>
+
+                    <p class="help-block" ng-show="form.$error.recaptcha" translate="global.messages.validate.recaptcha.required">
+                    Answer if you're a human.
+                    </p>
+                </div>
+
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" translate="register.form.button">Register</button>
             </form>
             <p></p>
-            <div class="alert alert-warning" translate="global.messages.info.authenticated">
-                If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-            </div>
         </div>
     </div>
 </div>

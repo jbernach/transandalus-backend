@@ -140,6 +140,7 @@ public class AccountResourceIntTest {
                 .andExpect(status().isInternalServerError());
     }
 
+    /*
     @Test
     @Transactional
     public void testRegisterValid() throws Exception {
@@ -162,7 +163,7 @@ public class AccountResourceIntTest {
 
         Optional<User> user = userRepository.findOneByLogin("joe");
         assertThat(user.isPresent()).isTrue();
-    }
+    }*/
 
     @Test
     @Transactional
@@ -212,7 +213,7 @@ public class AccountResourceIntTest {
         assertThat(user.isPresent()).isFalse();
     }
 
-    @Test
+    /*@Test
     @Transactional
     public void testRegisterDuplicateLogin() throws Exception {
         // Good
@@ -247,9 +248,9 @@ public class AccountResourceIntTest {
 
         Optional<User> userDup = userRepository.findOneByEmail("alicejr@example.com");
         assertThat(userDup.isPresent()).isFalse();
-    }
+    }*/
 
-    @Test
+    /*@Test
     @Transactional
     public void testRegisterDuplicateEmail() throws Exception {
         // Good
@@ -284,9 +285,9 @@ public class AccountResourceIntTest {
 
         Optional<User> userDup = userRepository.findOneByLogin("johnjr");
         assertThat(userDup.isPresent()).isFalse();
-    }
+    }*/
 
-    @Test
+    /*@Test
     @Transactional
     public void testRegisterAdminIsIgnored() throws Exception {
         UserDTO u = new UserDTO(
@@ -310,5 +311,5 @@ public class AccountResourceIntTest {
         assertThat(userDup.isPresent()).isTrue();
         assertThat(userDup.get().getAuthorities()).hasSize(1)
             .containsExactly(authorityRepository.findOne(AuthoritiesConstants.USER));
-    }
+    }*/
 }

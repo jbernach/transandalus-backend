@@ -1,18 +1,20 @@
 package org.transandalus.backend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import org.transandalus.backend.domain.PersistentToken;
 import org.transandalus.backend.domain.User;
 import org.transandalus.backend.repository.PersistentTokenRepository;
 import org.transandalus.backend.repository.UserRepository;
 import org.transandalus.backend.security.SecurityUtils;
 import org.transandalus.backend.service.MailService;
+import org.transandalus.backend.service.RecaptchaVerificationService;
 import org.transandalus.backend.service.UserService;
 import org.transandalus.backend.web.rest.dto.KeyAndPasswordDTO;
 import org.transandalus.backend.web.rest.dto.UserDTO;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
-
 import org.apache.commons.lang.StringUtils;
+import org.apache.regexp.recompile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
@@ -47,7 +50,10 @@ public class AccountResource {
 
     @Inject
     private MailService mailService;
-
+    
+    @Inject
+    private RecaptchaVerificationService recaptchaService;
+    
     /**
      * POST  /register -> register the user.
      */
@@ -61,6 +67,17 @@ public class AccountResource {
             .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
                 .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
+                	// Verify Recaptcha
+                	if(userDTO.getRecaptcha() == null){
+                		return new ResponseEntity<>("recaptcha verification failed", HttpStatus.BAD_REQUEST);	
+                	}
+                	
+                	userDTO.getRecaptcha().setRemoteAddress((request.getHeader("X-Real-IP") != null)?request.getHeader("X-Real-IP"):request.getRemoteAddr());
+                	
+                	if(!recaptchaService.validate(userDTO.getRecaptcha())){
+                		return new ResponseEntity<>("recaptcha verification failed", HttpStatus.BAD_REQUEST);
+                	}
+                	
                     User user = userService.createUserInformation(userDTO.getLogin(), userDTO.getPassword(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail().toLowerCase(),
                     userDTO.getLangKey());

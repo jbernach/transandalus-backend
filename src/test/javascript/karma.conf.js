@@ -38,6 +38,7 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
             'main/webapp/bower_components/lodash/lodash.js',
             'main/webapp/bower_components/angular-google-maps/dist/angular-google-maps.js',
+            'main/webapp/bower_components/angular-recaptcha/release/angular-recaptcha.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/components/transa_services/module.js',

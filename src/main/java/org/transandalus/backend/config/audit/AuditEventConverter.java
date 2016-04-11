@@ -1,7 +1,7 @@
 package org.transandalus.backend.config.audit;
 
 import org.transandalus.backend.domain.PersistentAuditEvent;
-
+import org.transandalus.backend.security.CustomWebAuthenticationDetails;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
@@ -74,6 +74,11 @@ public class AuditEventConverter {
                 Object object = data.get(key);
 
                 // Extract the data that will be saved.
+                if (object instanceof CustomWebAuthenticationDetails) {
+                	CustomWebAuthenticationDetails authenticationDetails = (CustomWebAuthenticationDetails) object;
+                    results.put("remoteAddress", authenticationDetails.getRealAddress());
+                    results.put("sessionId", authenticationDetails.getSessionId());
+                }
                 if (object instanceof WebAuthenticationDetails) {
                     WebAuthenticationDetails authenticationDetails = (WebAuthenticationDetails) object;
                     results.put("remoteAddress", authenticationDetails.getRemoteAddress());

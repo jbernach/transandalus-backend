@@ -42,6 +42,9 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private RecaptchaDTO recaptcha;
+    
+    
     public UserDTO() {
     }
 
@@ -97,7 +100,15 @@ public class UserDTO {
         return authorities;
     }
 
-    @Override
+    public RecaptchaDTO getRecaptcha() {
+		return recaptcha;
+	}
+
+	public void setRecaptcha(RecaptchaDTO recaptcha) {
+		this.recaptcha = recaptcha;
+	}
+
+	@Override
     public String toString() {
         return "UserDTO{" +
             "login='" + login + '\'' +
@@ -108,6 +119,9 @@ public class UserDTO {
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
             ", authorities=" + authorities +
+            ", recaptcha=" + recaptcha +
             "}";
     }
+
+	
 }
