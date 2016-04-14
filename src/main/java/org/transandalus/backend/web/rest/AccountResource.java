@@ -14,7 +14,6 @@ import org.transandalus.backend.web.rest.dto.KeyAndPasswordDTO;
 import org.transandalus.backend.web.rest.dto.UserDTO;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
 import org.apache.commons.lang.StringUtils;
-import org.apache.regexp.recompile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
