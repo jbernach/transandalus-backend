@@ -27,7 +27,7 @@
                 Invalid human verification!
             </div>
         </div>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-5 col-md-offset-2">
             <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
 
                 <div class="form-group">
@@ -127,6 +127,13 @@
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" translate="register.form.button">Register</button>
             </form>
             <p></p>
+        </div>
+        <div class="col-md-4">
+            <br/>
+            <jh-social ng-provider="google"></jh-social>
+            <jh-social ng-provider="facebook"></jh-social>
+            <!--jh-social ng-provider="twitter"></jh-social-->
+            <!-- jhipster-needle-add-social-button -->
         </div>
     </div>
 </div>
