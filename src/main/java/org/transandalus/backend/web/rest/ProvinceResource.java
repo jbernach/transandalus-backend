@@ -2,15 +2,24 @@ package org.transandalus.backend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import de.micromata.opengis.kml.v_2_2_0.Feature;
+import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.Document;
+
 import org.transandalus.backend.domain.I18n;
 import org.transandalus.backend.domain.Province;
+import org.transandalus.backend.domain.Stage;
+import org.transandalus.backend.domain.Track;
 import org.transandalus.backend.repository.ProvinceRepository;
+import org.transandalus.backend.repository.StageRepository;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
 import org.transandalus.backend.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +30,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -37,6 +47,9 @@ public class ProvinceResource {
         
     @Inject
     private ProvinceRepository provinceRepository;
+    
+    @Inject 
+    private StageRepository stageRepository;
     
     /**
      * POST  /provinces -> Create a new province.
@@ -92,6 +105,54 @@ public class ProvinceResource {
             .body(result);
     }
 
+    /**
+     * PUT  /provinces/generate_kml/:id -> generate the kml for "id" province.
+     */
+    @RequestMapping(value = "/provinces/generate_kml/{id}",
+        method = RequestMethod.PUT,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional
+    public ResponseEntity<Province> updateProvinceKML(@PathVariable Long id) {
+        log.debug("PUT request to generate the KML for Province : {}", id);
+        Province province = provinceRepository.findOne(id);
+        if(province != null){
+        	province.resolveTraduction();
+        	Track track  = province.getTrack();
+        	
+        	Page<Stage> stages = stageRepository.findByProvinceId(new PageRequest(0, 1000), id);
+        	
+        	track.setContentType("application/vnd.google-earth.kml+xml");
+        	Kml provinceKml = new Kml();
+        	Document document = provinceKml.createAndSetDocument();
+        	
+        	stages.getContent().stream().forEach(s ->{
+        		Track ts = s.getTrack();
+        		
+        		if(ts.getContentType() != null){
+        			Kml stageKml = Kml.unmarshal(ts.getContent());
+        			stageKml.getFeature();
+        			Document stageDocument = (de.micromata.opengis.kml.v_2_2_0.Document)stageKml.getFeature();
+        			for(Feature feat:stageDocument.getFeature()){
+        				document.addToFeature(feat);
+        			}
+        		}
+        	});
+        	
+        	StringWriter writer = new StringWriter();
+        	provinceKml.marshal(writer);
+        	track.setContent(writer.toString());
+        	
+        	province = provinceRepository.save(province);
+        }
+        
+        return Optional.ofNullable(province)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    
     /**
      * GET  /provinces -> get all the provinces.
      */
