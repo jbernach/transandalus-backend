@@ -137,7 +137,7 @@
                 <div class="help-block clearfix">
                     <span class="pull-left">{{stage.track.contentType}} {{byteSize(stage.track.content)}}</span>
                     <button ng-click="clearTrack(stage);"
-                            ng-if="stage.track.contentType"
+                            ng-if="stage.track.content"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
@@ -151,8 +151,7 @@
                     ng-model="stage.track.name" />
 
             <input type="hidden" class="form-control" name="track" id="field_track"
-                    ng-model="stage.track.content"
-                     />
+                    ng-model="stage.track.content" />
             <input type="hidden" class="form-control" name="trackContentType" id="field_trackContentType"
                     ng-model="stage.track.contentType" />
         </div>

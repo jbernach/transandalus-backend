@@ -152,7 +152,7 @@ angular.module('backendApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
 .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyA0GaaEWidwLtS1CZ2irjrxE9lTBEqHsBE',
-        v: '3.20', //defaults to latest 3.X anyhow
+        v: '3', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
 });

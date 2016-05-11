@@ -18,66 +18,66 @@
             />
 
     <cache name="org.transandalus.backend.domain.User"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Authority"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.User.authorities"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.PersistentToken"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.User.persistentTokens"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
     
     <cache name="org.transandalus.backend.domain.SocialUserConnection"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Article"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
     
     <cache name="org.transandalus.backend.domain.Category"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.I18n"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Menu"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.MenuItem"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Province"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Stage"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Track"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.Translation"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 
     <cache name="org.transandalus.backend.domain.I18n.translations"
-           timeToLiveSeconds="3600">
+           timeToLiveSeconds="120">
     </cache>
 </ehcache>

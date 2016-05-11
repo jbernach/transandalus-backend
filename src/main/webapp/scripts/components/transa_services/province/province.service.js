@@ -11,6 +11,7 @@ angular.module('transaServices')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'updateKml': { method:'PUT', url: 'api/provinces/generate_kml/:id'}
         });
     });
