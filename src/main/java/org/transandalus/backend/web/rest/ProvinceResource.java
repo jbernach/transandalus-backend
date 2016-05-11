@@ -5,6 +5,7 @@ import com.codahale.metrics.annotation.Timed;
 import de.micromata.opengis.kml.v_2_2_0.Feature;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.Document;
+import de.micromata.opengis.kml.v_2_2_0.StyleSelector;
 
 import org.transandalus.backend.domain.I18n;
 import org.transandalus.backend.domain.Province;
@@ -129,13 +130,22 @@ public class ProvinceResource {
         		Track ts = s.getTrack();
         		
         		if(ts != null && ts.getContent() != null){
-        			Kml stageKml = Kml.unmarshal(ts.getContent());
+        			String kmlString = ts.getContent();
+      
+        			// Fix Google kml namespace (for old files)
+        			kmlString = kmlString.replace("xmlns=\"http://earth.google.com/kml/2.2\"", "xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\"" );
+        			Kml stageKml = Kml.unmarshal(kmlString);
+        			
         			if(stageKml != null){
-        				stageKml.getFeature();
             			Document stageDocument = (de.micromata.opengis.kml.v_2_2_0.Document)stageKml.getFeature();
             			for(Feature feat:stageDocument.getFeature()){
             				document.addToFeature(feat);
             			}
+            			
+            			for(StyleSelector style:stageDocument.getStyleSelector()){
+            				document.addToStyleSelector(style);
+            			}
+            			
         			}
         		}
         	});
