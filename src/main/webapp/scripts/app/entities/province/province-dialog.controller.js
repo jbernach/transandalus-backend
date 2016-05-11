@@ -36,5 +36,7 @@ angular.module('backendApp').controller('ProvinceDialogController',
             $uibModalInstance.dismiss('cancel');
         };
 
-       
+        $scope.generateKml = function(){
+            Province.updateKml({id: $scope.province.id},$scope.province);
+        };
 }]);

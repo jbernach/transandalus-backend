@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -129,12 +128,14 @@ public class ProvinceResource {
         	stages.getContent().stream().forEach(s ->{
         		Track ts = s.getTrack();
         		
-        		if(ts.getContentType() != null){
+        		if(ts != null && ts.getContent() != null){
         			Kml stageKml = Kml.unmarshal(ts.getContent());
-        			stageKml.getFeature();
-        			Document stageDocument = (de.micromata.opengis.kml.v_2_2_0.Document)stageKml.getFeature();
-        			for(Feature feat:stageDocument.getFeature()){
-        				document.addToFeature(feat);
+        			if(stageKml != null){
+        				stageKml.getFeature();
+            			Document stageDocument = (de.micromata.opengis.kml.v_2_2_0.Document)stageKml.getFeature();
+            			for(Feature feat:stageDocument.getFeature()){
+            				document.addToFeature(feat);
+            			}
         			}
         		}
         	});

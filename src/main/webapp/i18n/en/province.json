@@ -21,7 +21,8 @@
             "description": "Description",
             "image": "Image",
             "imageURL": "Image URL",
-            "track": "Track (kml)"
+            "track": "Track (kml)",
+            "updateKml": "Update track"
         }
     }
 }

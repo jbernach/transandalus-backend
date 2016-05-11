@@ -28,7 +28,7 @@ angular.module('backendApp')
         if($scope.stage.$promise){
             $scope.stage.$promise.then(function(el){
                 if(el.track){
-                    var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+el.track.id;
+                    var url = 'http://' + window.location.hostname + ':' + window.location.port + window.location.pathname + 'api/tracks/'+el.track.id+'?cacheBuster='+new Date().getTime();
                     $scope.map.kmlLayerOptions = {'url':url};
                 }
             });
