@@ -7,7 +7,7 @@ angular.module('backendApp').controller('ArticleDialogController',
         $scope.language = $translate.use();
 
         $scope.article = entity;
-        $scope.categorys = Category.query();
+        $scope.categories = Category.query({size:1000});
         $scope.load = function(id) {
             Article.get({id : id}, function(result) {
                 $scope.article = result;

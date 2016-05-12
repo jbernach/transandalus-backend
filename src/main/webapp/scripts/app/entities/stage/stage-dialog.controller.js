@@ -7,8 +7,8 @@ angular.module('backendApp').controller('StageDialogController',
         $scope.language = $translate.use();
         
         $scope.stage = entity;
-        $scope.provinces = Province.query();
-        $scope.stages = Stage.query();
+        $scope.provinces = Province.query({size:1000});
+        $scope.stages = Stage.query({size:1000});
         $scope.load = function(id) {
             Stage.get({id : id}, function(result) {
                 $scope.stage = result;

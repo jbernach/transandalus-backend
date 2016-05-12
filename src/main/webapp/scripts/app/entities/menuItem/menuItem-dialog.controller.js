@@ -7,7 +7,8 @@ angular.module('backendApp').controller('MenuItemDialogController',
         $scope.language = $translate.use();
         
         $scope.menuItem = entity;
-        $scope.menus = Menu.query();
+        $scope.menus = Menu.query({size:1000});
+        
         $scope.load = function(id) {
             MenuItem.get({id : id}, function(result) {
                 $scope.menuItem = result;
