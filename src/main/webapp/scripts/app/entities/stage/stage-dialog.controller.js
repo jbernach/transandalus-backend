@@ -43,6 +43,7 @@ angular.module('backendApp').controller('StageDialogController',
         $scope.byteSize = DataUtils.byteSize;
 
         $scope.clearTrack = function(stage){
+            stage.track.name = null;
             stage.track.content = null;
             stage.track.contentType = null;
         };
@@ -60,6 +61,7 @@ angular.module('backendApp').controller('StageDialogController',
                         if(stage.track == null){
                             stage.track = {};
                         }
+                        stage.track.name = $file.name;
                         stage.track.content = textData;
                         stage.track.contentType = $file.type;
                     });

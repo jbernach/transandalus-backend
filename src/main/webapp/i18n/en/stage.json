@@ -32,7 +32,8 @@
             "prevAltStage": "Previous alternative Stage",
             "image": "Image",
             "imageURL": "Image URL",
-            "track": "Track (kml)"
+            "track": "Track (kml)",
+            "downloadTrack": "Download track"
         }
     }
 }

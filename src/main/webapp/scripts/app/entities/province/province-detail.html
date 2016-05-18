@@ -52,6 +52,7 @@
                             <ui-gmap-layer type="KmlLayer" options="map.kmlLayerOptions"></ui-gmap-layer>
                         </ui-gmap-google-map>
                         <br>
+                        <div><a href="{{map.kmlLayerOptions.url}}" download="{{province.track.name}}" target="_blank" translate="backendApp.province.downloadTrack">Download track</a></div>
                         <div>{{province.track.contentType}}  {{byteSize(province.track.content)}}</div>
                     </div>
                 </td>

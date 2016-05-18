@@ -140,6 +140,7 @@
                             <ui-gmap-layer type="KmlLayer" options="map.kmlLayerOptions"></ui-gmap-layer>
                         </ui-gmap-google-map>
                         <br>
+                        <div><a href="{{map.kmlLayerOptions.url}}" download="{{stage.track.name}}" target="_blank" translate="backendApp.stage.downloadTrack">Download track</a></div>
                         <div>{{stage.track.contentType}}  {{byteSize(stage.track.content)}}</div>
                     </div>
                 </td>
