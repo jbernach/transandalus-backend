@@ -23,7 +23,7 @@
             </column>
              
             <column name="name" type="varchar(255)" />           
-            <column name="content" type="TEXT" />
+            <column name="content" type="LONGTEXT" />
             <column name="content_type" type="varchar(50)" />
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
