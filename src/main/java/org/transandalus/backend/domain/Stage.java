@@ -39,7 +39,7 @@ public class Stage implements Serializable {
     private StageType stageType = StageType.REGULAR;
     
     @Size(max = 1024)
-    @Column(name="start_place", length = 1024)
+    @Column(name="start_place", length = 1024, columnDefinition="clob")
     private  String startPlace;
     
     @Transient
