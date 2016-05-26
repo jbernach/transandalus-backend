@@ -58,6 +58,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/category/category-dialog.html',
                         controller: 'CategoryDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: function () {
                                 return {
@@ -84,6 +85,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/category/category-dialog.html',
                         controller: 'CategoryDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: ['Category', function(Category) {
                                 return Category.get({id : $stateParams.id});

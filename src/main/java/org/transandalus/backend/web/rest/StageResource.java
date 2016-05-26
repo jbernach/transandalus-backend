@@ -96,6 +96,8 @@ public class StageResource {
         result.setNextAltStage(stage.getNextAltStage());
         result.setPrevStage(stage.getPrevStage());
         result.setPrevAltStage(stage.getPrevAltStage());
+        result.setStageType(stage.getStageType());
+        result.setStartPlace(stage.getStartPlace());
         
         result = stageRepository.save(result);
         

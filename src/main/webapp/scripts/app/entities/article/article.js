@@ -58,6 +58,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/article/article-dialog.html',
                         controller: 'ArticleDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: function () {
                                 return {
@@ -85,6 +86,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/article/article-dialog.html',
                         controller: 'ArticleDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: ['Article', function(Article) {
                                 return Article.get({id : $stateParams.id});

@@ -33,7 +33,9 @@
             "image": "Imagen",
             "imageURL": "URL Imagen",
             "track": "Track (kml)",
-            "downloadTrack": "Descargar track"
+            "downloadTrack": "Descargar track",
+            "stageType": "Tipo",
+            "startPlace": "Lugar de partida"
         }
     }
 }

@@ -10,18 +10,37 @@
         <jh-alert-error></jh-alert-error>
         <div class="form-group">
             <label for="id" translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="stage.id" readonly />
+            <input type="text" class="form-control" id="id" name="id" ng-model="stage.id" readonly />
         </div>
         <div class="form-group">
             <label class="control-label" translate="backendApp.stage.name" for="field_name">Name</label>
             <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
-            <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="stage.name"
-                     />
+            <input type="text" class="form-control" name="name" id="field_name" ng-model="stage.name" />
         </div>
         
-        
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.stageType" for="field_stageType">Type</label>
+            <select class="form-control" name="stageType" ng-model="stage.stageType" id="field_stageType">
+                <option value="REGULAR" translate="backendApp.StageType.REGULAR">Regular</option>
+                <option value="ALTERNATIVE" translate="backendApp.StageType.ALTERNATIVE">Alternative</option>
+                <option value="LINK" translate="backendApp.StageType.LINK">Link</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label translate="backendApp.stage.province" for="field_province">province</label>
+            <select class="form-control" id="field_province" name="province" ng-model="stage.province" ng-options="province as province.name for province in provinces track by province.id">
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.startPlace" for="field_startPlace">Start place</label>
+            <input type="text" class="form-control" name="startPlace" id="field_startPlace"
+                    ng-model="stage.startPlace"
+                     />
+        </div>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -91,12 +110,6 @@
                      />
         </div>
 
-        <div class="form-group">
-            <label translate="backendApp.stage.province" for="field_province">province</label>
-            <select class="form-control" id="field_province" name="province" ng-model="stage.province" ng-options="province as province.name for province in provinces track by province.id">
-                <option value=""></option>
-            </select>
-        </div>
         <div class="form-group">
             <label translate="backendApp.stage.nextStage" for="field_nextStage">nextStage</label>
             <select class="form-control" id="field_nextStage" name="nextStage" ng-model="stage.nextStage" ng-options="stage as stage.name for stage in stages track by stage.id">

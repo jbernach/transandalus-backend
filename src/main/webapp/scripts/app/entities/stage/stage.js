@@ -20,6 +20,7 @@ angular.module('backendApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('stage');
                         $translatePartialLoader.addPart('difficulty');
+                        $translatePartialLoader.addPart('stageType');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]
@@ -42,7 +43,8 @@ angular.module('backendApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('stage');
                         $translatePartialLoader.addPart('difficulty');
-                        $translatePartialLoader.addPart('difficulty');
+                        $translatePartialLoader.addPart('stageType');
+                        $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'Stage', function($stateParams, Stage) {
@@ -61,6 +63,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/stage/stage-dialog.html',
                         controller: 'StageDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: function () {
                                 return {
@@ -75,7 +78,9 @@ angular.module('backendApp')
                                     galleryURL: null,
                                     imageUrl: null,
                                     track: {id:null, name: null, content: null, contentType: null},
-                                    id: null
+                                    id: null,
+                                    stageType: 'REGULAR',
+                                    startPlace: null
                                 };
                             }
                         }
@@ -97,6 +102,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/stage/stage-dialog.html',
                         controller: 'StageDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: ['Stage', function(Stage) {
                                 return Stage.get({id : $stateParams.id});

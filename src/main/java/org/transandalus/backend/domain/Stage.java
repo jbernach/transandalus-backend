@@ -10,6 +10,7 @@ import java.util.Objects;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.transandalus.backend.domain.enumeration.Difficulty;
+import org.transandalus.backend.domain.enumeration.StageType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -32,6 +33,14 @@ public class Stage implements Serializable {
     @JsonSerialize
     @JsonDeserialize
     private String name;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "stage_type")
+    private StageType stageType = StageType.REGULAR;
+    
+    @Size(max = 1024)
+    @Column(name="start_place", length = 1024)
+    private  String startPlace;
     
     @Transient
     @JsonSerialize
@@ -258,7 +267,23 @@ public class Stage implements Serializable {
         this.prevAltStage = stage;
     }
 
-    @Override
+    public StageType getStageType() {
+		return stageType;
+	}
+
+	public void setStageType(StageType stageType) {
+		this.stageType = stageType;
+	}
+
+	public String getStartPlace() {
+		return startPlace;
+	}
+
+	public void setStartPlace(String startPlace) {
+		this.startPlace = startPlace;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

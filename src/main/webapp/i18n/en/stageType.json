@@ -1,0 +1,13 @@
+{
+    "backendApp": {
+        "StageType" : {
+            "null": "",
+            "Regular": "Regular",
+            "Alternative": "Alternative",
+            "Link": "Link",
+            "REGULAR": "Regular",
+            "ALTERNATIVE": "Alternative",
+            "LINK": "Link"
+        }
+    }
+}

@@ -58,6 +58,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/menuItem/menuItem-dialog.html',
                         controller: 'MenuItemDialogController',
                         size: 'md',
+                        backdrop: 'static',
                         resolve: {
                             entity: function () {
                                 return {
@@ -86,6 +87,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/menuItem/menuItem-dialog.html',
                         controller: 'MenuItemDialogController',
                         size: 'md',
+                        backdrop: 'static',
                         resolve: {
                             entity: ['MenuItem', function(MenuItem) {
                                 return MenuItem.get({id : $stateParams.id});

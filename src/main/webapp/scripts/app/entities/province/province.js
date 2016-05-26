@@ -58,6 +58,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/province/province-dialog.html',
                         controller: 'ProvinceDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: function () {
                                 return {
@@ -88,6 +89,7 @@ angular.module('backendApp')
                         templateUrl: 'scripts/app/entities/province/province-dialog.html',
                         controller: 'ProvinceDialogController',
                         size: 'lg',
+                        backdrop: 'static',
                         resolve: {
                             entity: ['Province', function(Province) {
                                 return Province.get({id : $stateParams.id});
