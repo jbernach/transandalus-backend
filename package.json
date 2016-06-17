@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "0.0.0",
-  "description": "Description for backend",
+  "description": "Transandalus backend web administration",
   "private": true,
   "cacheDirectories": [
     "node_modules",

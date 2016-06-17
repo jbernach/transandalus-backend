@@ -20,7 +20,6 @@
                 <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="title"><span translate="backendApp.article.title">Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="text"><span translate="backendApp.article.text">Text</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="category.name"><span translate="backendApp.article.category">category</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -29,7 +28,6 @@
                 <tr ng-repeat="article in articles track by article.id">
                     <td><a ui-sref="article.detail({id:article.id})">{{article.id}}</a></td>
                     <td>{{article.title}}</td>
-                    <td>{{article.text}}</td>
                     <td>
                         <a ui-sref="category.detail({id:article.category.id})">{{article.category.name}}</a>
                     </td>
