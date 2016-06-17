@@ -97,7 +97,7 @@ public class ArticleResource {
         Page<Article> page = articleRepository.findAll(pageable);
         page.getContent().stream().forEach(p -> {
         	p.resolveTraduction();
-        	p.getCategory().resolveTraduction();
+        	if(p.getCategory() != null) p.getCategory().resolveTraduction();
         });
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/articles");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -115,7 +115,7 @@ public class ArticleResource {
         Article article = articleRepository.findOne(id);
         if(article != null){
         	article.resolveTraduction();
-        	article.getCategory().resolveTraduction();
+        	if(article.getCategory() != null) article.getCategory().resolveTraduction();
         }
         return Optional.ofNullable(article)
             .map(result -> new ResponseEntity<>(
