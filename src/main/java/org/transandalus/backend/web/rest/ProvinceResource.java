@@ -196,7 +196,9 @@ public class ProvinceResource {
         Province province = provinceRepository.findOne(id);
         if(province != null){
         	province.resolveTraduction();
-        	String contentType  = province.getTrack().getContentType(); // Lazy
+        	if(province.getTrack() != null){
+        		String contentType  = province.getTrack().getContentType(); // Lazy
+        	}
         }
         return Optional.ofNullable(province)
             .map(result -> new ResponseEntity<>(
