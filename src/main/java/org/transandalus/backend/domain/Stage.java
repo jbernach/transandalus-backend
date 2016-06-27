@@ -47,6 +47,9 @@ public class Stage implements Serializable {
     @JsonDeserialize
     private String description;
     
+    @Column(name="track", insertable = false, updatable = false)
+    private Long trackId;
+    
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "i18n_name", nullable = false)
     @JsonIgnore
@@ -281,6 +284,14 @@ public class Stage implements Serializable {
 
 	public void setStartPlace(String startPlace) {
 		this.startPlace = startPlace;
+	}
+
+	public Long getTrackId() {
+		return trackId;
+	}
+
+	public void setTrackId(Long trackId) {
+		this.trackId = trackId;
 	}
 
 	@Override

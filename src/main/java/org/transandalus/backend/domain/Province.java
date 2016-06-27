@@ -41,6 +41,9 @@ public class Province implements Serializable {
     @JsonDeserialize
     private String description;
     
+    @Column(name="track", insertable = false, updatable = false)
+    private Long trackId;
+    
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "i18n_name", nullable = false)
     @JsonIgnore
@@ -124,6 +127,14 @@ public class Province implements Serializable {
 		this.imageUrl = imageUrl;
 	}
 
+	public Long getTrackId() {
+		return trackId;
+	}
+
+	public void setTrackId(Long trackId) {
+		this.trackId = trackId;
+	}
+	
 	@Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -125,6 +125,7 @@ public class StageResource {
         		s.getProvince().resolveTraduction();
         	}
         });
+    		
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/stages");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
