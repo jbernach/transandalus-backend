@@ -1,18 +1,22 @@
 package org.transandalus.backend.service;
 
 import java.io.StringWriter;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.transandalus.backend.domain.Stage;
 import org.transandalus.backend.domain.Track;
 import org.transandalus.backend.repository.StageRepository;
 
 import de.micromata.opengis.kml.v_2_2_0.Document;
+import de.micromata.opengis.kml.v_2_2_0.Feature;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.Folder;
 
 /**
  * Service class for managing KML information.
@@ -51,8 +55,24 @@ public class KmlService {
     			Kml stageKml = Kml.unmarshal(kmlString);
     			
     			if(stageKml != null){
-        			Document stageDocument = (de.micromata.opengis.kml.v_2_2_0.Document)stageKml.getFeature();
-        			stageDocument.getFeature().stream().forEach(f -> document.addToFeature(f));
+        			Document stageDocument = (Document)stageKml.getFeature();
+        			stageDocument.getFeature().stream().forEach(f -> {
+        				// Check if we're adding a folder that exists in the composed document (dont want duplicated forlders)
+        				if(f instanceof Folder){
+        					Optional<Feature> existingFolder = getFolder(document, f.getName());
+        				
+        					if(existingFolder.isPresent()){
+        						// Only add the contents of the folder to existing
+        						((Folder) f).getFeature().stream().forEach(ff -> {
+        							((Folder)existingFolder.get()).addToFeature(ff);
+        						});
+        					}else{
+        						document.addToFeature(f); // Add the folder and contents to result kml
+        					}
+        				}else{
+        					document.addToFeature(f); // Add the folder and contents to result kml
+        				}
+        			});
         			stageDocument.getStyleSelector().stream().forEach(st -> document.addToStyleSelector(st));        			
     			}
     		}
@@ -62,5 +82,14 @@ public class KmlService {
     	provinceKml.marshal(writer);
     	
     	return writer.toString();
+	}
+	
+	private Optional<Feature> getFolder(Document document, String name){
+		return document.getFeature().stream().filter(f -> {
+			if(f instanceof Folder && ObjectUtils.nullSafeEquals(f.getName(),name)){
+				return true;
+			}
+			return false;
+		}).findAny();
 	}
 }
