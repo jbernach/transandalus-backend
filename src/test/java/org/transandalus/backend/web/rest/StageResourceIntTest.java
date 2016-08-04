@@ -3,11 +3,13 @@ package org.transandalus.backend.web.rest;
 import org.transandalus.backend.Application;
 import org.transandalus.backend.domain.Stage;
 import org.transandalus.backend.repository.StageRepository;
-
+import org.transandalus.backend.service.KmlService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import static org.hamcrest.Matchers.hasItem;
+
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -23,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -72,6 +75,9 @@ public class StageResourceIntTest {
     private StageRepository stageRepository;
 
     @Inject
+    private KmlService kmlService;
+    
+    @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Inject
@@ -86,6 +92,7 @@ public class StageResourceIntTest {
         MockitoAnnotations.initMocks(this);
         StageResource stageResource = new StageResource();
         ReflectionTestUtils.setField(stageResource, "stageRepository", stageRepository);
+        ReflectionTestUtils.setField(stageResource, "kmlService", kmlService);
         this.restStageMockMvc = MockMvcBuilders.standaloneSetup(stageResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();

@@ -3,8 +3,12 @@ package org.transandalus.backend.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import org.transandalus.backend.domain.I18n;
+import org.transandalus.backend.domain.Province;
 import org.transandalus.backend.domain.Stage;
+import org.transandalus.backend.domain.Track;
+import org.transandalus.backend.repository.ProvinceRepository;
 import org.transandalus.backend.repository.StageRepository;
+import org.transandalus.backend.service.KmlService;
 import org.transandalus.backend.web.rest.util.HeaderUtil;
 import org.transandalus.backend.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -38,6 +42,12 @@ public class StageResource {
     @Inject
     private StageRepository stageRepository;
     
+    @Inject
+    private ProvinceRepository provinceRepository;
+    
+    @Inject 
+    private KmlService kmlService;
+    
     /**
      * POST  /stages -> Create a new stage.
      */
@@ -56,6 +66,18 @@ public class StageResource {
         stage.setI18nDescription(I18n.setTranslationText(stage.getI18nDescription(), stage.getDescription()));
         
         Stage result = stageRepository.save(stage);
+        
+        // Update Province KML
+        if(result.getProvince() != null){
+	        Province province = provinceRepository.findOne(result.getProvince().getId());
+	        Track track = province.getTrack();
+	    	track.setContentType("application/vnd.google-earth.kml+xml");
+	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
+	    	province = provinceRepository.save(province);
+        }
+        
+    	kmlService.resetKmlCache();
+    	
         return ResponseEntity.created(new URI("/api/stages/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("stage", result.getId().toString()))
             .body(result);
@@ -101,7 +123,16 @@ public class StageResource {
         
         result = stageRepository.save(result);
         
-        
+        // Update Province KML
+        if(result.getProvince() != null){
+	        Province province = provinceRepository.findOne(result.getProvince().getId());
+	        Track track = province.getTrack();
+	    	track.setContentType("application/vnd.google-earth.kml+xml");
+	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
+	    	province = provinceRepository.save(province);
+        }
+    	kmlService.resetKmlCache();
+    	
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("stage", stage.getId().toString()))
             .body(result);
@@ -168,9 +199,27 @@ public class StageResource {
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public ResponseEntity<Void> deleteStage(@PathVariable Long id) {
         log.debug("REST request to delete Stage : {}", id);
+        Stage result = stageRepository.findOne(id);
+        
+        Province province = result.getProvince();
+        
         stageRepository.delete(id);
+        
+        if(province != null){
+	        province =  provinceRepository.findOne(result.getProvince().getId());
+	        
+	        // Update Province KML        
+	        Track track = province.getTrack();
+	    	track.setContentType("application/vnd.google-earth.kml+xml");
+	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
+	    	province = provinceRepository.save(province);
+        }
+        
+    	kmlService.resetKmlCache();
+    	
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("stage", id.toString())).build();
     }
 }
