@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +45,7 @@ public class KmlService {
 	 * @return String with the KML content of all the stages of the specified province merged.
 	 */
 	@Timed
+	@Transactional
 	public String generateProvinceKML(Long provinceId){
 		log.debug("Generating province KML for province Id {}.", provinceId);
 		
@@ -60,6 +62,7 @@ public class KmlService {
 	 */
 	@Cacheable(cacheNames = "kml")
 	@Timed
+	@Transactional
 	public String getAllStagesKml(String folder){
 		log.debug("Generating KML for all stages with folder {}.", folder);
 		
@@ -81,7 +84,7 @@ public class KmlService {
 	 * @param folderFilter Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
 	 * @return String with the merged KML.
 	 */
-	public String mergeTracksKml(Stream<Track> tracks, String folderFilter){
+	private String mergeTracksKml(Stream<Track> tracks, String folderFilter){
 		Kml mergedKml = new Kml();
     	Document mergedDocument = mergedKml.createAndSetDocument();
     	
@@ -117,7 +120,12 @@ public class KmlService {
         				}
         			});
         			
-        			trackDocument.getStyleSelector().stream().forEach(st -> mergedDocument.addToStyleSelector(st));        			
+        			// Copy styles without repeating
+        			trackDocument.getStyleSelector().stream().forEach(style -> {
+        				if(!hasStyleWithId(mergedDocument, style.getId())){
+        					mergedDocument.addToStyleSelector(style);
+        				}
+        			});        			
     			}
     		}
     	});
@@ -143,5 +151,15 @@ public class KmlService {
 			}
 			return false;
 		}).findAny();
+	}
+	
+	/**
+	 * Return wheter the document contains a style with the specified Id.
+	 * @param document Kml document
+	 * @param styleId Style id to look for in the document
+	 * @return Wheter the document has the style or not
+	 */
+	private boolean hasStyleWithId(Document document, String styleId){
+		return document.getStyleSelector().stream().filter(st -> ObjectUtils.nullSafeToString(st.getId()).equals(styleId)).count() > 0;
 	}
 }

@@ -68,12 +68,14 @@ public class StageResource {
         Stage result = stageRepository.save(stage);
         
         // Update Province KML
-        Province province = provinceRepository.findOne(result.getProvince().getId());
-        Track track = province.getTrack();
-    	track.setContentType("application/vnd.google-earth.kml+xml");
-    	track.setContent(kmlService.generateProvinceKML(province.getId()));
-    	province = provinceRepository.save(province);
-    	
+        if(result.getProvince() != null){
+	        Province province = provinceRepository.findOne(result.getProvince().getId());
+	        Track track = province.getTrack();
+	    	track.setContentType("application/vnd.google-earth.kml+xml");
+	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
+	    	province = provinceRepository.save(province);
+        }
+        
     	kmlService.resetKmlCache();
     	
         return ResponseEntity.created(new URI("/api/stages/" + result.getId()))
@@ -122,12 +124,13 @@ public class StageResource {
         result = stageRepository.save(result);
         
         // Update Province KML
-        Province province = provinceRepository.findOne(result.getProvince().getId());
-        Track track = province.getTrack();
-    	track.setContentType("application/vnd.google-earth.kml+xml");
-    	track.setContent(kmlService.generateProvinceKML(province.getId()));
-    	province = provinceRepository.save(province);
-    	
+        if(result.getProvince() != null){
+	        Province province = provinceRepository.findOne(result.getProvince().getId());
+	        Track track = province.getTrack();
+	    	track.setContentType("application/vnd.google-earth.kml+xml");
+	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
+	    	province = provinceRepository.save(province);
+        }
     	kmlService.resetKmlCache();
     	
         return ResponseEntity.ok()
@@ -200,16 +203,21 @@ public class StageResource {
     public ResponseEntity<Void> deleteStage(@PathVariable Long id) {
         log.debug("REST request to delete Stage : {}", id);
         Stage result = stageRepository.findOne(id);
-        Province province = provinceRepository.findOne(result.getProvince().getId());
+        
+        Province province = result.getProvince();
         
         stageRepository.delete(id);
         
-        // Update Province KML        
-        Track track = province.getTrack();
-    	track.setContentType("application/vnd.google-earth.kml+xml");
-    	track.setContent(kmlService.generateProvinceKML(province.getId()));
-    	province = provinceRepository.save(province);
-    	
+        if(province != null){
+	        province =  provinceRepository.findOne(result.getProvince().getId());
+	        
+	        // Update Province KML        
+	        Track track = province.getTrack();
+	    	track.setContentType("application/vnd.google-earth.kml+xml");
+	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
+	    	province = provinceRepository.save(province);
+        }
+        
     	kmlService.resetKmlCache();
     	
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("stage", id.toString())).build();
