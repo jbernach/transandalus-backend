@@ -66,6 +66,10 @@ public class CacheConfiguration {
                 cacheManager.replaceCacheWithDecoratedCache(cache, decoratedCache);
             }
         }
+        
+        // Cache for KML content in KmlService
+        cacheManager.addCache("kml");
+        
         EhCacheCacheManager ehCacheManager = new EhCacheCacheManager();
         ehCacheManager.setCacheManager(cacheManager);
         return ehCacheManager;

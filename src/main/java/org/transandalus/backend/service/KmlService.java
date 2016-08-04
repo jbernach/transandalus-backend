@@ -6,6 +6,10 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,8 @@ import org.springframework.util.ObjectUtils;
 import org.transandalus.backend.domain.Stage;
 import org.transandalus.backend.domain.Track;
 import org.transandalus.backend.repository.StageRepository;
+
+import com.codahale.metrics.annotation.Timed;
 
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Feature;
@@ -26,6 +32,8 @@ import de.micromata.opengis.kml.v_2_2_0.Folder;
  */
 @Service
 public class KmlService {
+	private final Logger log = LoggerFactory.getLogger(KmlService.class);
+	
 	@Inject 
     private StageRepository stageRepository;
     
@@ -35,11 +43,35 @@ public class KmlService {
 	 * @param provinceId Province Id we want to assemble the KML.
 	 * @return String with the KML content of all the stages of the specified province merged.
 	 */
+	@Timed
 	public String generateProvinceKML(Long provinceId){
+		log.debug("Generating province KML for province Id {}.", provinceId);
+		
     	// Recover all the stages of the province
 		Page<Stage> stages = stageRepository.findByProvinceId(new PageRequest(0, Integer.MAX_VALUE), provinceId);
     	
 		return mergeTracksKml(stages.getContent().stream().map(stage -> stage.getTrack()), null);
+	}
+	
+	/**
+	 * Returns the merged KML for all stages.
+	 * @param folder Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
+	 * @return
+	 */
+	@Cacheable(cacheNames = "kml")
+	@Timed
+	public String getAllStagesKml(String folder){
+		log.debug("Generating KML for all stages with folder {}.", folder);
+		
+    	// Recover all the stages
+		Page<Stage> stages = stageRepository.findAll(new PageRequest(0, Integer.MAX_VALUE));
+    	
+		return mergeTracksKml(stages.getContent().stream().map(stage -> stage.getTrack()), folder);
+	}
+	
+	@CacheEvict(cacheNames = "kml", allEntries = true)
+	public void resetKmlCache(){
+		log.debug("Reseting KML cache.");
 	}
 	
 	/**
@@ -49,7 +81,7 @@ public class KmlService {
 	 * @param folderFilter Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
 	 * @return String with the merged KML.
 	 */
-	private String mergeTracksKml(Stream<Track> tracks, String folderFilter){
+	public String mergeTracksKml(Stream<Track> tracks, String folderFilter){
 		Kml mergedKml = new Kml();
     	Document mergedDocument = mergedKml.createAndSetDocument();
     	

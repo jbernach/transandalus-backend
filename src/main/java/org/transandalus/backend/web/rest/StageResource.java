@@ -74,6 +74,8 @@ public class StageResource {
     	track.setContent(kmlService.generateProvinceKML(province.getId()));
     	province = provinceRepository.save(province);
     	
+    	kmlService.resetKmlCache();
+    	
         return ResponseEntity.created(new URI("/api/stages/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("stage", result.getId().toString()))
             .body(result);
@@ -125,6 +127,8 @@ public class StageResource {
     	track.setContentType("application/vnd.google-earth.kml+xml");
     	track.setContent(kmlService.generateProvinceKML(province.getId()));
     	province = provinceRepository.save(province);
+    	
+    	kmlService.resetKmlCache();
     	
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("stage", stage.getId().toString()))
@@ -205,6 +209,8 @@ public class StageResource {
     	track.setContentType("application/vnd.google-earth.kml+xml");
     	track.setContent(kmlService.generateProvinceKML(province.getId()));
     	province = provinceRepository.save(province);
+    	
+    	kmlService.resetKmlCache();
     	
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("stage", id.toString())).build();
     }
