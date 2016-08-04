@@ -2,6 +2,7 @@ package org.transandalus.backend.service;
 
 import java.io.StringWriter;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -35,58 +36,77 @@ public class KmlService {
 	 * @return String with the KML content of all the stages of the specified province merged.
 	 */
 	public String generateProvinceKML(Long provinceId){
-		// Master DOM
-		Kml provinceKml = new Kml();
-    	Document document = provinceKml.createAndSetDocument();
-    	
     	// Recover all the stages of the province
 		Page<Stage> stages = stageRepository.findByProvinceId(new PageRequest(0, Integer.MAX_VALUE), provinceId);
     	
-    	stages.getContent().stream().forEach(stage ->{
-    		Track ts = stage.getTrack();
-    		
-    		if(ts != null && ts.getContent() != null){
-    			String kmlString = ts.getContent();
+		return mergeTracksKml(stages.getContent().stream().map(stage -> stage.getTrack()), null);
+	}
+	
+	/**
+	 * Return a String containing the combined KML from specified tracks.
+	 * The returned kml doesn't duplicate the folders, instead it combines it.
+	 * @param tracks List of Kml tracks to merge
+	 * @param folderFilter Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
+	 * @return String with the merged KML.
+	 */
+	private String mergeTracksKml(Stream<Track> tracks, String folderFilter){
+		Kml mergedKml = new Kml();
+    	Document mergedDocument = mergedKml.createAndSetDocument();
+    	
+    	tracks.forEach(track ->{
+    		if(track != null && track.getContent() != null){
+    			String kmlString = track.getContent();
   
     			// Fix Google kml namespace (for old files)
     			kmlString = kmlString.replace("xmlns=\"http://earth.google.com/kml/2.2\"", "xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\"" );
     			
     			// From String to DOM
-    			Kml stageKml = Kml.unmarshal(kmlString);
+    			Kml trackKml = Kml.unmarshal(kmlString);
     			
-    			if(stageKml != null){
-        			Document stageDocument = (Document)stageKml.getFeature();
-        			stageDocument.getFeature().stream().forEach(f -> {
+    			if(trackKml != null){
+        			Document trackDocument = (Document)trackKml.getFeature();
+        			trackDocument.getFeature().stream().forEach(f -> {
         				// Check if we're adding a folder that exists in the composed document (dont want duplicated forlders)
         				if(f instanceof Folder){
-        					Optional<Feature> existingFolder = getFolder(document, f.getName());
-        				
-        					if(existingFolder.isPresent()){
-        						// Only add the contents of the folder to existing
-        						((Folder) f).getFeature().stream().forEach(ff -> {
-        							((Folder)existingFolder.get()).addToFeature(ff);
-        						});
-        					}else{
-        						document.addToFeature(f); // Add the folder and contents to result kml
+        					if(folderFilter == null || folderFilter.equalsIgnoreCase(f.getName())){
+        						Optional<Feature> existingFolder = getFolder(mergedDocument, f.getName());
+                				
+            					if(existingFolder.isPresent()){
+            						// Only add the contents of the folder to existing one
+            						((Folder) f).getFeature().stream().forEach(inFolderFeat -> {
+            							((Folder)existingFolder.get()).addToFeature(inFolderFeat);
+            						});
+            					}else{
+            						mergedDocument.addToFeature(f); // Add the folder and contents to merged kml
+            					}
         					}
         				}else{
-        					document.addToFeature(f); // Add the folder and contents to result kml
+        					mergedDocument.addToFeature(f); // Add the feature to merged kml
         				}
         			});
-        			stageDocument.getStyleSelector().stream().forEach(st -> document.addToStyleSelector(st));        			
+        			
+        			trackDocument.getStyleSelector().stream().forEach(st -> mergedDocument.addToStyleSelector(st));        			
     			}
     		}
     	});
     	
+    	// String serialization
     	StringWriter writer = new StringWriter();
-    	provinceKml.marshal(writer);
+    	mergedKml.marshal(writer);
     	
     	return writer.toString();
 	}
 	
+	/**
+	 * Return the Folder feature inside the Kml document.
+	 * @param document Kml document
+	 * @param name Folder name to search
+	 * @return Folder feature
+	 */
 	private Optional<Feature> getFolder(Document document, String name){
 		return document.getFeature().stream().filter(f -> {
-			if(f instanceof Folder && ObjectUtils.nullSafeEquals(f.getName(),name)){
+			
+			if(f instanceof Folder && ObjectUtils.nullSafeToString(f.getName()).equalsIgnoreCase(ObjectUtils.nullSafeToString(name))){
 				return true;
 			}
 			return false;
