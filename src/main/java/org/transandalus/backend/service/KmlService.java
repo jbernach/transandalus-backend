@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.transandalus.backend.domain.Stage;
 import org.transandalus.backend.domain.Track;
+import org.transandalus.backend.domain.enumeration.StageType;
 import org.transandalus.backend.repository.StageRepository;
 
 import com.codahale.metrics.annotation.Timed;
@@ -57,21 +58,29 @@ public class KmlService {
 	
 	/**
 	 * Returns the merged KML for all stages.
+	 * This method is cached.
 	 * @param folder Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
 	 * @return
 	 */
 	@Cacheable(cacheNames = "kml")
 	@Timed
 	@Transactional
-	public String getAllStagesKml(String folder){
+	public String getAllStagesKml(String folder, boolean includeAlternatives, boolean includeLinks){
 		log.debug("Generating KML for all stages with folder {}.", folder);
 		
     	// Recover all the stages
-		Page<Stage> stages = stageRepository.findAll(new PageRequest(0, Integer.MAX_VALUE));
+		Stream<Stage> stages = stageRepository.findAll(new PageRequest(0, Integer.MAX_VALUE)).getContent().stream();
     	
-		return mergeTracksKml(stages.getContent().stream().map(stage -> stage.getTrack()), folder);
+		return mergeTracksKml(stages.filter(stage -> {
+			return stage.getStageType() == StageType.REGULAR ||
+											(includeAlternatives && stage.getStageType() == StageType.ALTERNATIVE) ||
+											(includeLinks && stage.getStageType() == StageType.LINK);
+		}).map(stage -> stage.getTrack()), folder);
 	}
 	
+	/**
+	 * Reset the global KML cache used in getAllStagesKml
+	 */
 	@CacheEvict(cacheNames = "kml", allEntries = true)
 	public void resetKmlCache(){
 		log.debug("Reseting KML cache.");
@@ -84,7 +93,7 @@ public class KmlService {
 	 * @param folderFilter Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
 	 * @return String with the merged KML.
 	 */
-	private String mergeTracksKml(Stream<Track> tracks, String folderFilter){
+	public String mergeTracksKml(Stream<Track> tracks, String folderFilter){
 		Kml mergedKml = new Kml();
     	Document mergedDocument = mergedKml.createAndSetDocument();
     	

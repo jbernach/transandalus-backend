@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.transandalus.backend.service.KmlService;
 
@@ -36,8 +37,11 @@ public class VitaResource {
 	 */
 	@RequestMapping(value = "/layer/{layerName}", method = RequestMethod.GET, produces = MediaType.ALL_VALUE)
 	@Timed
-	public ResponseEntity<String> getVitaLayer(@PathVariable String layerName){
-		String layerKml = kmlService.getAllStagesKml(layerName);
+	public ResponseEntity<String> getVitaLayer(@PathVariable String layerName,
+			@RequestParam(name = "alt", defaultValue = "false") boolean includeAlternatives,
+			@RequestParam(name = "link", defaultValue = "false") boolean includeLinks){
+		
+		String layerKml = kmlService.getAllStagesKml(layerName, includeAlternatives, includeLinks);
 		
 		return new ResponseEntity<String>(layerKml, HttpStatus.OK);
 	}
