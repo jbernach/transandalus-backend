@@ -69,6 +69,7 @@ public class CacheConfiguration {
         
         // Cache for KML content in KmlService
         cacheManager.addCache("kml");
+        cacheManager.getCache("kml").getCacheConfiguration().setEternal(true);
         
         EhCacheCacheManager ehCacheManager = new EhCacheCacheManager();
         ehCacheManager.setCacheManager(cacheManager);
