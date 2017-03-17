@@ -17,6 +17,7 @@
                 "title": "Stage"
             },
             "name": "Name",
+            "title": "Title",
             "description": "Description",
             "distanceTotal": "Total distance (km)",
             "distanceRoad": "Road distance (km)",

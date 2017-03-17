@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+<changeSet author="JoseMaria" id="1464294532600-1">
+    <addColumn tableName="province">
+        <column name="i18n_title" type="bigint">
+            <constraints nullable="true"/>
+        </column>
+    </addColumn>
+    <addForeignKeyConstraint
+        constraintName="fk_province_title"
+        baseTableName="province"
+        baseColumnNames="i18n_title"
+        referencedTableName="i18n"
+        referencedColumnNames="id_i18n"/>
+
+    <addColumn tableName="stage">
+        <column name="i18n_title" type="bigint">
+            <constraints nullable="true"/>
+        </column>
+    </addColumn>
+    <addForeignKeyConstraint
+        constraintName="fk_stage_title"
+        baseTableName="stage"
+        baseColumnNames="i18n_title"
+        referencedTableName="i18n"
+        referencedColumnNames="id_i18n"/>
+</changeSet>
+
+</databaseChangeLog>

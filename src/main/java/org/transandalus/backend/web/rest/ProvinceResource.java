@@ -36,13 +36,13 @@ import java.util.Optional;
 public class ProvinceResource {
 
     private final Logger log = LoggerFactory.getLogger(ProvinceResource.class);
-        
+
     @Inject
     private ProvinceRepository provinceRepository;
-    
-    @Inject 
+
+    @Inject
     private KmlService kmlService;
-    
+
     /**
      * POST  /provinces -> Create a new province.
      */
@@ -58,8 +58,9 @@ public class ProvinceResource {
         }
 
         province.setI18nName(I18n.setTranslationText(province.getI18nName(), province.getName()));
+        province.setI18nTitle(I18n.setTranslationText(province.getI18nTitle(), province.getTitle()));
         province.setI18nDescription(I18n.setTranslationText(province.getI18nDescription(), province.getDescription()));
-        
+
         Province result = provinceRepository.save(province);
         return ResponseEntity.created(new URI("/api/provinces/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("province", result.getId().toString()))
@@ -79,19 +80,21 @@ public class ProvinceResource {
         if (province.getId() == null) {
             return createProvince(province);
         }
-        
+
         Province result = provinceRepository.findOne(province.getId());
-        
+
         result.setCode(province.getCode());
         result.setI18nName(I18n.setTranslationText(result.getI18nName(), province.getName()));
+        result.setI18nTitle(I18n.setTranslationText(result.getI18nTitle(), province.getTitle()));
         result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), province.getDescription()));
         result.setName(province.getName());
+        result.setTitle(province.getTitle());
         result.setDescription(province.getDescription());
         result.setTrack(province.getTrack());
         result.setImageUrl(province.getImageUrl());
-        
+
         result = provinceRepository.save(result);
-        
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("province", province.getId().toString()))
             .body(result);
@@ -113,17 +116,17 @@ public class ProvinceResource {
         	Track track  = province.getTrack();
         	track.setContentType("application/vnd.google-earth.kml+xml");
         	track.setContent(kmlService.generateProvinceKML(id));
-        	
+
         	province = provinceRepository.save(province);
         }
-        
+
         return Optional.ofNullable(province)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    
+
     /**
      * GET  /provinces -> get all the provinces.
      */
@@ -134,11 +137,11 @@ public class ProvinceResource {
     public ResponseEntity<List<Province>> getAllProvinces(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Provinces");
-        Page<Province> page = provinceRepository.findAll(pageable); 
+        Page<Province> page = provinceRepository.findAll(pageable);
         page.getContent().stream().forEach(p -> {
         	p.resolveTraduction();
         });
-        
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/provinces");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

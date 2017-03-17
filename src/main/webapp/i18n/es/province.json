@@ -18,6 +18,7 @@
             },
             "code": "Código",
             "name": "Nombre",
+            "title": "Título",
             "description": "Descripción",
             "image": "Imagen",
             "imageURL": "URL Imagen",

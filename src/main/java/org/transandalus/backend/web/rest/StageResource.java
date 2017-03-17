@@ -38,16 +38,16 @@ import java.util.Optional;
 public class StageResource {
 
     private final Logger log = LoggerFactory.getLogger(StageResource.class);
-        
+
     @Inject
     private StageRepository stageRepository;
-    
+
     @Inject
     private ProvinceRepository provinceRepository;
-    
-    @Inject 
+
+    @Inject
     private KmlService kmlService;
-    
+
     /**
      * POST  /stages -> Create a new stage.
      */
@@ -61,12 +61,13 @@ public class StageResource {
         if (stage.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("stage", "idexists", "A new stage cannot already have an ID")).body(null);
         }
-        
+
         stage.setI18nName(I18n.setTranslationText(stage.getI18nName(), stage.getName()));
+        stage.setI18nTitle(I18n.setTranslationText(stage.getI18nTitle(), stage.getTitle()));
         stage.setI18nDescription(I18n.setTranslationText(stage.getI18nDescription(), stage.getDescription()));
-        
+
         Stage result = stageRepository.save(stage);
-        
+
         // Update Province KML
         if(result.getProvince() != null){
 	        Province province = provinceRepository.findOne(result.getProvince().getId());
@@ -75,9 +76,9 @@ public class StageResource {
 	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
 	    	province = provinceRepository.save(province);
         }
-        
+
     	kmlService.resetKmlCache();
-    	
+
         return ResponseEntity.created(new URI("/api/stages/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("stage", result.getId().toString()))
             .body(result);
@@ -96,13 +97,15 @@ public class StageResource {
         if (stage.getId() == null) {
             return createStage(stage);
         }
-        
+
 
         Stage result = stageRepository.findOne(stage.getId());
-        
+
         result.setI18nName(I18n.setTranslationText(result.getI18nName(), stage.getName()));
+        result.setI18nTitle(I18n.setTranslationText(result.getI18nTitle(), stage.getTitle()));
         result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), stage.getDescription()));
         result.setName(stage.getName());
+        result.setTitle(stage.getTitle());
         result.setDescription(stage.getDescription());
         result.setTrack(stage.getTrack());
         result.setImageUrl(stage.getImageUrl());
@@ -120,9 +123,9 @@ public class StageResource {
         result.setPrevAltStage(stage.getPrevAltStage());
         result.setStageType(stage.getStageType());
         result.setStartPlace(stage.getStartPlace());
-        
+
         result = stageRepository.save(result);
-        
+
         // Update Province KML
         if(result.getProvince() != null){
 	        Province province = provinceRepository.findOne(result.getProvince().getId());
@@ -132,7 +135,7 @@ public class StageResource {
 	    	province = provinceRepository.save(province);
         }
     	kmlService.resetKmlCache();
-    	
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("stage", stage.getId().toString()))
             .body(result);
@@ -148,7 +151,7 @@ public class StageResource {
     public ResponseEntity<List<Stage>> getAllStages(Pageable pageable, @RequestParam(value="filter", required = false) String filter, @RequestParam(value="province", required = false) Long province)
         throws URISyntaxException {
         log.debug("REST request to get a page of Stages");
-        
+
         Page<Stage> page = (province != null)?stageRepository.findByProvinceId(pageable, province):(filter != null && filter.length() > 0)?stageRepository.findByFilter(pageable, filter, LocaleContextHolder.getLocale().getLanguage()):stageRepository.findAll(pageable);
         page.getContent().stream().forEach(s -> {
         	s.resolveTraduction();
@@ -156,7 +159,7 @@ public class StageResource {
         		s.getProvince().resolveTraduction();
         	}
         });
-    		
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/stages");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -203,23 +206,23 @@ public class StageResource {
     public ResponseEntity<Void> deleteStage(@PathVariable Long id) {
         log.debug("REST request to delete Stage : {}", id);
         Stage result = stageRepository.findOne(id);
-        
+
         Province province = result.getProvince();
-        
+
         stageRepository.delete(id);
-        
+
         if(province != null){
 	        province =  provinceRepository.findOne(result.getProvince().getId());
-	        
-	        // Update Province KML        
+
+	        // Update Province KML
 	        Track track = province.getTrack();
 	    	track.setContentType("application/vnd.google-earth.kml+xml");
 	    	track.setContent(kmlService.generateProvinceKML(province.getId()));
 	    	province = provinceRepository.save(province);
         }
-        
+
     	kmlService.resetKmlCache();
-    	
+
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("stage", id.toString())).build();
     }
 }

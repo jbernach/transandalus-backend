@@ -9,8 +9,8 @@
     <include file="classpath:config/liquibase/changelog/20160209214000_added_entity_Track.xml" relativeToChangelogFile="false"/>
    	<include file="classpath:config/liquibase/changelog/20160128173819_added_entity_Province.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160206165246_added_entity_Stage.xml" relativeToChangelogFile="false"/>
-    
-    
+
+
     <include file="classpath:config/liquibase/changelog/20160218151947_added_entity_Category.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160222213632_added_entity_Article.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160225175825_added_entity_Menu.xml" relativeToChangelogFile="false"/>
@@ -18,5 +18,7 @@
     <include file="classpath:config/liquibase/changelog/20160226181513_changelog.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160302220900_added_social_login.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160526202837_stage_improvements.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170317000000_province_and_stage_title.xml" relativeToChangelogFile="false"/>
+
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

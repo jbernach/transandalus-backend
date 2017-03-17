@@ -17,7 +17,12 @@
             <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
             <input type="text" class="form-control" name="name" id="field_name" ng-model="stage.name" />
         </div>
-        
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.stage.title" for="field_title">Title</label>
+            <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
+            <input type="text" class="form-control" name="name" id="field_title" ng-model="stage.title" />
+        </div>
+
         <div class="form-group">
             <label class="control-label" translate="backendApp.stage.stageType" for="field_stageType">Type</label>
             <select class="form-control" name="stageType" ng-model="stage.stageType" id="field_stageType">
@@ -58,7 +63,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="form-group">
             <label class="control-label" translate="backendApp.stage.distanceTotal" for="field_distanceTotal">DistanceTotal</label>
             <input type="number" class="form-control" name="distanceTotal" id="field_distanceTotal"

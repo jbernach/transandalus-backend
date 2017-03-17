@@ -17,6 +17,7 @@
                 "title": "Etapa"
             },
             "name": "Nombre",
+            "title": "Título",
             "description": "Descripción",
             "distanceTotal": "Distancia total (km)",
             "distanceRoad": "Distancia por carretera (km)",

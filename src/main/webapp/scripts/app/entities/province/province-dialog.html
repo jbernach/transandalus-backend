@@ -36,11 +36,14 @@
         <div class="form-group">
             <label class="control-label" translate="backendApp.province.name" for="field_name">Name</label>
             <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
-            <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="province.name"
-                     />
+            <input type="text" class="form-control" name="name" id="field_name" ng-model="province.name" />
         </div>
-        
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.province.title" for="field_title">Title</label>
+            <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
+            <input type="text" class="form-control" name="name" id="field_title" ng-model="province.title" />
+        </div>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 col-md-6">

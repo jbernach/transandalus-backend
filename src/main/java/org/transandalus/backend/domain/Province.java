@@ -30,39 +30,49 @@ public class Province implements Serializable {
     @Size(min = 2, max = 16)
     @Column(name = "code", length = 16, nullable = false)
     private String code;
-    
+
     @Transient
     @JsonSerialize
     @JsonDeserialize
     private String name;
-    
+
+    @Transient
+    @JsonSerialize
+    @JsonDeserialize
+    private String title;
+
     @Transient
     @JsonSerialize
     @JsonDeserialize
     private String description;
-    
+
     @Column(name="track", insertable = false, updatable = false)
     private Long trackId;
-    
+
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "i18n_name", nullable = false)
     @JsonIgnore
     private I18n i18nName;
-    
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "i18n_title", nullable = false)
+    @JsonIgnore
+    private I18n i18nTitle;
+
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "i18n_description", nullable = false)
     @JsonIgnore
     private I18n i18nDescription;
-    
-    
+
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "track", nullable = false)
     private Track track;
- 
+
     @Size(max = 1024)
     @Column(name="image_url", length = 1024)
     private String imageUrl;
-    
+
     public Long getId() {
         return id;
     }
@@ -74,7 +84,7 @@ public class Province implements Serializable {
     public String getCode() {
         return code;
     }
-    
+
     public void setCode(String code) {
         this.code = code;
     }
@@ -82,15 +92,23 @@ public class Province implements Serializable {
     public String getName() {
     	return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -103,6 +121,14 @@ public class Province implements Serializable {
 		this.i18nName = i18nName;
 	}
 
+    public I18n getI18nTitle() {
+        return i18nTitle;
+    }
+
+    public void setI18nTitle(I18n i18nTitle) {
+        this.i18nTitle = i18nTitle;
+    }
+
 	public I18n getI18nDescription() {
 		return i18nDescription;
 	}
@@ -110,7 +136,7 @@ public class Province implements Serializable {
 	public void setI18nDescription(I18n i18nDescription) {
 		this.i18nDescription = i18nDescription;
 	}
-	
+
     public Track getTrack() {
 		return track;
 	}
@@ -134,7 +160,7 @@ public class Province implements Serializable {
 	public void setTrackId(Long trackId) {
 		this.trackId = trackId;
 	}
-	
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -161,14 +187,16 @@ public class Province implements Serializable {
             "id=" + id +
             ", code='" + code + "'" +
             ", name='" + name + "'" +
+            ", title='" + title + "'" +
             ", description='" + description + "'" +
             '}';
     }
-    
+
     public void resolveTraduction(){
     	this.setName(I18n.getTranslationText(this.getI18nName()));
+        this.setTitle(I18n.getTranslationText(this.getI18nTitle()));
     	this.setDescription(I18n.getTranslationText(this.getI18nDescription()));
     }
 
-	
+
 }
