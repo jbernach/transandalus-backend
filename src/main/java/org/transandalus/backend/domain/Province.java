@@ -54,8 +54,8 @@ public class Province implements Serializable {
     @JsonIgnore
     private I18n i18nName;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "i18n_title", nullable = false)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "i18n_title", nullable = true)
     @JsonIgnore
     private I18n i18nTitle;
 
