@@ -23,8 +23,10 @@
             "image": "Image",
             "imageURL": "Image URL",
             "track": "Track (kml)",
+            "guideUrl": "Guide URL",
             "updateKml": "Update track",
-            "downloadTrack": "Download track"
+            "downloadTrack": "Download track",
+            "downloadGuide": "Download guide"
         }
     }
 }

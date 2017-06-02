@@ -46,6 +46,11 @@ public class Province implements Serializable {
     @JsonDeserialize
     private String description;
 
+    @Transient
+    @JsonSerialize
+    @JsonDeserialize
+    private String guideUrl;
+
     @Column(name="track", insertable = false, updatable = false)
     private Long trackId;
 
@@ -54,8 +59,8 @@ public class Province implements Serializable {
     @JsonIgnore
     private I18n i18nName;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "i18n_title", nullable = false)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "i18n_title", nullable = true)
     @JsonIgnore
     private I18n i18nTitle;
 
@@ -64,6 +69,10 @@ public class Province implements Serializable {
     @JsonIgnore
     private I18n i18nDescription;
 
+    @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "i18n_guide_url", nullable = true)
+    @JsonIgnore
+    private I18n i18nGuideUrl;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "track", nullable = false)
@@ -113,6 +122,14 @@ public class Province implements Serializable {
         this.description = description;
     }
 
+    public String getGuideUrl() {
+        return guideUrl;
+    }
+
+    public void setGuideUrl(String guideUrl) {
+        this.guideUrl = guideUrl;
+    }
+
     public I18n getI18nName() {
 		return i18nName;
 	}
@@ -130,12 +147,20 @@ public class Province implements Serializable {
     }
 
 	public I18n getI18nDescription() {
-		return i18nDescription;
-	}
+        return i18nDescription;
+    }
 
-	public void setI18nDescription(I18n i18nDescription) {
-		this.i18nDescription = i18nDescription;
-	}
+    public void setI18nDescription(I18n i18nDescription) {
+        this.i18nDescription = i18nDescription;
+    }
+
+    public I18n getI18nGuideUrl() {
+        return i18nGuideUrl;
+    }
+
+    public void setI18nGuideUrl(I18n i18nGuideUrl) {
+        this.i18nGuideUrl = i18nGuideUrl;
+    }
 
     public Track getTrack() {
 		return track;
@@ -196,6 +221,7 @@ public class Province implements Serializable {
     	this.setName(I18n.getTranslationText(this.getI18nName()));
         this.setTitle(I18n.getTranslationText(this.getI18nTitle()));
     	this.setDescription(I18n.getTranslationText(this.getI18nDescription()));
+    	this.setGuideUrl(I18n.getTranslationText(this.getI18nGuideUrl()));
     }
 
 

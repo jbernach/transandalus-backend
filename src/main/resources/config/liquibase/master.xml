@@ -19,6 +19,7 @@
     <include file="classpath:config/liquibase/changelog/20160302220900_added_social_login.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160526202837_stage_improvements.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170317000000_province_and_stage_title.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170602000000_province_guide_url.xml" relativeToChangelogFile="false"/>
 
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

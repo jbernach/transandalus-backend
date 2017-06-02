@@ -65,6 +65,11 @@
                     </div>
                 </td>
             </tr>
+            <tr ng-if="province.guideUrl">
+                <td colspan="2">
+                    <a href="{{province.guideUrl}}" target="_blank" translate="backendApp.province.downloadGuide">Download guide</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

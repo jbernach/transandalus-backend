@@ -41,7 +41,7 @@
         <div class="form-group">
             <label class="control-label" translate="backendApp.province.title" for="field_title">Title</label>
             <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
-            <input type="text" class="form-control" name="name" id="field_title" ng-model="province.title" />
+            <input type="text" class="form-control" name="title" id="field_title" ng-model="province.title" />
         </div>
 
         <div class="container-fluid">
@@ -71,6 +71,11 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.province.guideUrl" for="field_guide">Guide Url</label>
+            <span class="badge pull-right"><small>{{language | findLanguageFromKey}}</small></span>
+            <input type="text" class="form-control" name="guideUrl" id="field_guide" ng-model="province.guideUrl" />
+        </div>
 
         <div class="form_group">
             <button type="button" class="btn" ng-click="generateKml()">
