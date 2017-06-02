@@ -60,6 +60,7 @@ public class ProvinceResource {
         province.setI18nName(I18n.setTranslationText(province.getI18nName(), province.getName()));
         province.setI18nTitle(I18n.setTranslationText(province.getI18nTitle(), province.getTitle()));
         province.setI18nDescription(I18n.setTranslationText(province.getI18nDescription(), province.getDescription()));
+        province.setI18nGuideUrl(I18n.setTranslationText(province.getI18nGuideUrl(), province.getGuideUrl()));
 
         Province result = provinceRepository.save(province);
         return ResponseEntity.created(new URI("/api/provinces/" + result.getId()))
@@ -87,9 +88,11 @@ public class ProvinceResource {
         result.setI18nName(I18n.setTranslationText(result.getI18nName(), province.getName()));
         result.setI18nTitle(I18n.setTranslationText(result.getI18nTitle(), province.getTitle()));
         result.setI18nDescription(I18n.setTranslationText(result.getI18nDescription(), province.getDescription()));
+        result.setI18nGuideUrl(I18n.setTranslationText(result.getI18nGuideUrl(), province.getGuideUrl()));
         result.setName(province.getName());
         result.setTitle(province.getTitle());
         result.setDescription(province.getDescription());
+        result.setGuideUrl(province.getGuideUrl());
         result.setTrack(province.getTrack());
         result.setImageUrl(province.getImageUrl());
 
