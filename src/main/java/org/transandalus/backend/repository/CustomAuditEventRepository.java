@@ -52,6 +52,16 @@ public class CustomAuditEventRepository {
             }
 
             @Override
+            public List<AuditEvent> find(String principal, Date after, String type){
+                return find(principal, after);
+            }
+
+            @Override
+            public List<AuditEvent> find(Date after){
+                return find(null, after);
+            }
+
+            @Override
             @Transactional(propagation = Propagation.REQUIRES_NEW)
             public void add(AuditEvent event) {
                 if (!AUTHORIZATION_FAILURE.equals(event.getType()) &&
