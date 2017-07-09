@@ -79,7 +79,7 @@ public class AuditResourceIntTest {
         restAuditMockMvc.perform(get("/api/audits"))
                 .andExpect(status().isOk())
                 // .andDo(print())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
     }
 
@@ -91,7 +91,7 @@ public class AuditResourceIntTest {
         // Get the audit
         restAuditMockMvc.perform(get("/api/audits/{id}", auditEvent.getId()))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.principal").value(SAMPLE_PRINCIPAL));
     }
 

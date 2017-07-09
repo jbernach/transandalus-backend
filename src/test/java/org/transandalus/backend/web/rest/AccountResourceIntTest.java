@@ -123,7 +123,7 @@ public class AccountResourceIntTest {
         restUserMockMvc.perform(get("/api/account")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.login").value("test"))
                 .andExpect(jsonPath("$.firstName").value("john"))
                 .andExpect(jsonPath("$.lastName").value("doe"))

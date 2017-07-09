@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "appPath": "src/main/webapp",
   "testPath": "src/test/javascript/spec",
   "dependencies": {

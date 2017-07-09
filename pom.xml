@@ -45,7 +45,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <javax.inject.version>1</javax.inject.version>
-        <liquibase.version>3.4.2</liquibase.version>
+        <liquibase.version>3.5.3</liquibase.version>
         <liquibase-slf4j.version>1.2.1</liquibase-slf4j.version>
         <sentry-logback-version>1.2.0</sentry-logback-version>
         <liquibase-hibernate4.version>3.5</liquibase-hibernate4.version>
@@ -56,10 +56,10 @@
         <metrics-spark-reporter.version>1.2</metrics-spark-reporter.version>
         <metrics-spring.version>3.1.2</metrics-spring.version>
         <run.addResources>false</run.addResources>
-        <spring-security.version>4.0.2.RELEASE</spring-security.version>
+        <spring-security.version>4.1.4.RELEASE</spring-security.version>
         <springfox.version>2.0.3</springfox.version>
         <!-- Spring social -->
-        <httpclient.version>4.5.1</httpclient.version>
+        <httpclient.version>4.5.3</httpclient.version>
         <spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
         <spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
         <spring-social-facebook.version>2.0.3.RELEASE</spring-social-facebook.version>
