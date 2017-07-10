@@ -6,6 +6,7 @@ import org.transandalus.backend.repository.AuthorityRepository;
 import org.transandalus.backend.repository.PersistentTokenRepository;
 import org.transandalus.backend.repository.UserRepository;
 import org.transandalus.backend.security.SecurityUtils;
+import org.transandalus.backend.security.UserNotFoundException;
 import org.transandalus.backend.service.util.RandomUtil;
 import org.transandalus.backend.web.rest.dto.ManagedUserDTO;
 import java.time.ZonedDateTime;
@@ -180,7 +181,15 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUserWithAuthorities() {
-        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get();
+        org.springframework.security.core.userdetails.User currentUser = null;
+
+        try{
+            currentUser = SecurityUtils.getCurrentUser();
+        }catch(UserNotFoundException ex){
+            return null;
+        }
+
+        User user = userRepository.findOneByLogin(currentUser.getUsername()).get();
         user.getAuthorities().size(); // eagerly load the association
         return user;
     }
