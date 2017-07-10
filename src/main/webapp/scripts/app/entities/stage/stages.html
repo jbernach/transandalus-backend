@@ -7,7 +7,7 @@
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="stage.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span 
+                    <span
                         translate="backendApp.stage.home.createLabel">Create new Stage
                     </span>
                 </button>
@@ -29,6 +29,7 @@
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="province.code"><span translate="backendApp.stage.province">province</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span translate="backendApp.stage.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="stageType"><span translate="backendApp.stage.stageType">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -39,11 +40,12 @@
                         <a ui-sref="province.detail({id:stage.province.id})">{{stage.province.name}}</a>
                     </td>
                     <td>{{stage.name}}</td>
+                    <td><span translate="{{'backendApp.StageType.' + stage.stageType}}">{{stage.stageType}}</span></td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="stage.detail({id:stage.id})"
-                                    class="btn btn-info btn-sm"> 
+                                    class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
@@ -55,7 +57,7 @@
                             </button>
                             <button type="submit"
                                     ui-sref="stage.delete({id:stage.id})"
-                                    class="btn btn-danger btn-sm">                                    
+                                    class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </button>
