@@ -1,0 +1,24 @@
+{
+    "backendApp": {
+        "volunteer" : {
+            "home": {
+                "title": "Voluntarios",
+                "createLabel": "Crear nuevo Voluntario",
+                "createOrEditLabel": "Crear o editar Voluntario",
+                "search": "Buscar Voluntario"
+            },
+            "created": "Un nuevo Voluntario ha sido creado con el identificador {{ param }}",
+            "updated": "Un Voluntario ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Voluntario ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar al Voluntario {{ id }}?"
+            },
+            "detail": {
+                "title": "Voluntario"
+            },
+            "name": "Nombre",
+            "text": "Texto",
+            "image": "URL Imagen"
+        }
+    }
+}

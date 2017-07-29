@@ -1,0 +1,30 @@
+
+<div>
+    <h2><span translate="backendApp.volunteer.detail.title">Volunteer</span> {{vm.volunteer.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="backendApp.volunteer.name">Name</span></dt></dt>
+        <dd>
+            <span>{{vm.volunteer.name}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="backendApp.volunteer.text">Text</span></dt></dt>
+        <dd>
+            <span>{{vm.volunteer.text}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="backendApp.volunteer.image">Image</span></dt></dt>
+        <dd>
+            <span>{{vm.volunteer.image}}<span>
+            <br>
+            <img data-ng-src="{{vm.volunteer.image}}" style="max-height: 100px;" ng-if="vm.volunteer.image"/>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
