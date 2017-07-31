@@ -11,8 +11,9 @@
                 "stage": "Stages",
                 "category": "Categories",
                 "article": "Articles",
-                "menu": "Menu",
-                "menuItem": "Menu Item",
+                "menu": "Menus",
+                "menuItem": "Menu Items",
+                "volunteer": "Volunteers",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

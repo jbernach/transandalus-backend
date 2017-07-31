@@ -22,6 +22,11 @@
         <appender-ref ref="FILE"/>
     </appender>
 
+    <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
 
     <logger name="org.transandalus.backend" level="@logback.loglevel@"/>
 
@@ -59,6 +64,7 @@
 
     <root level="@logback.loglevel@">
         <appender-ref ref="ASYNC"/>
+        <appender-ref ref="Sentry"/>
     </root>
 
 </configuration>

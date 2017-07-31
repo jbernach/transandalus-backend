@@ -33,7 +33,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.transandalus.backend.domain.enumeration.Difficulty;
-import org.transandalus.backend.domain.enumeration.Difficulty;
 
 /**
  * Test class for the StageResource REST controller.
@@ -62,10 +61,10 @@ public class StageResourceIntTest {
 
     private static final Integer DEFAULT_ELEVATION = 1;
     private static final Integer UPDATED_ELEVATION = 2;
-    
+
     private static final Difficulty DEFAULT_DIFFICULTY_PHYS = Difficulty.VERY_LOW;
     private static final Difficulty UPDATED_DIFFICULTY_PHYS = Difficulty.LOW;
-    
+
     private static final Difficulty DEFAULT_DIFFICULTY_TECH = Difficulty.VERY_LOW;
     private static final Difficulty UPDATED_DIFFICULTY_TECH = Difficulty.LOW;
     private static final String DEFAULT_GALLERY_URL = "AAAAA";
@@ -76,7 +75,7 @@ public class StageResourceIntTest {
 
     @Inject
     private KmlService kmlService;
-    
+
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 

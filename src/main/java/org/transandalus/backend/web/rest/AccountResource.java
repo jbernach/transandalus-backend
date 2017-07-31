@@ -49,10 +49,10 @@ public class AccountResource {
 
     @Inject
     private MailService mailService;
-    
+
     @Inject
     private RecaptchaVerificationService recaptchaService;
-    
+
     /**
      * POST  /register -> register the user.
      */
@@ -68,15 +68,15 @@ public class AccountResource {
                 .orElseGet(() -> {
                 	// Verify Recaptcha
                 	if(userDTO.getRecaptcha() == null){
-                		return new ResponseEntity<>("recaptcha verification failed", HttpStatus.BAD_REQUEST);	
+                		return new ResponseEntity<>("recaptcha verification failed", HttpStatus.BAD_REQUEST);
                 	}
-                	
+
                 	userDTO.getRecaptcha().setRemoteAddress((request.getHeader("X-Real-IP") != null)?request.getHeader("X-Real-IP"):request.getRemoteAddr());
-                	
+
                 	if(!recaptchaService.validate(userDTO.getRecaptcha())){
                 		return new ResponseEntity<>("recaptcha verification failed", HttpStatus.BAD_REQUEST);
                 	}
-                	
+
                     User user = userService.createUserInformation(userDTO.getLogin(), userDTO.getPassword(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail().toLowerCase(),
                     userDTO.getLangKey());
@@ -130,6 +130,7 @@ public class AccountResource {
             .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
+
 
     /**
      * POST  /account -> update the current user information.

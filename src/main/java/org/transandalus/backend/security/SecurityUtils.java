@@ -68,7 +68,7 @@ public final class SecurityUtils {
                 return (User) authentication.getPrincipal();
             }
         }
-        throw new IllegalStateException("User not found!");
+        throw new UserNotFoundException("User not found!");
     }
 
     /**
