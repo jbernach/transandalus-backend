@@ -1,0 +1,64 @@
+<div>
+    <h2 translate="backendApp.traveler.home.title">Travelers</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="traveler.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="backendApp.traveler.home.createLabel">
+                        Create new Traveler
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span translate="backendApp.traveler.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="from"><span translate="backendApp.traveler.from">From</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="image"><span translate="backendApp.traveler.image">Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="traveler in vm.travelers track by traveler.id">
+                    <td><a ui-sref="traveler-detail({id:traveler.id})">{{traveler.id}}</a></td>
+                    <td>{{traveler.name}}</td>
+                    <td>{{traveler.from}}</td>
+                    <td>{{traveler.image}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="traveler-detail({id:traveler.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="traveler.edit({id:traveler.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="traveler.delete({id:traveler.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.loadAll()"></uib-pager>
+</div>

@@ -1,0 +1,25 @@
+{
+    "backendApp": {
+        "traveler" : {
+            "home": {
+                "title": "Viajeros",
+                "createLabel": "Crear nuevo Viajero",
+                "createOrEditLabel": "Crear o editar Viajero",
+                "search": "Buscar Viajero"
+            },
+            "created": "Un nuevo Viajero ha sido creado con el identificador {{ param }}",
+            "updated": "Un Viajero ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Viajero ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar al Viajero {{ id }}?"
+            },
+            "detail": {
+                "title": "Viajero"
+            },
+            "name": "Nombre",
+            "from": "Desde",
+            "text": "Texto",
+            "image": "URL Imagen"
+        }
+    }
+}
