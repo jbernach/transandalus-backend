@@ -1,0 +1,65 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySponsorLabel" translate="backendApp.sponsor.home.createOrEditLabel">Create or edit a Sponsor</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.sponsor.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.sponsor.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.sponsor.name"
+                    required />
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.sponsor.link" for="field_link">From</label>
+            <input type="text" class="form-control" name="link" id="field_link" ng-model="vm.sponsor.link" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.sponsor.text" for="field_text">Text</label>
+            <span class="badge pull-right"><small>{{vm.language | findLanguageFromKey}}</small></span>
+            <input type="text" class="form-control" name="text" id="field_text"
+                    ng-model="vm.sponsor.text"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.sponsor.image" for="field_image">Image</label>
+            <input type="text" class="form-control" name="image" id="field_image"
+                    ng-model="vm.sponsor.image"
+                     />
+            <br>
+            <img data-ng-src="{{vm.sponsor.image}}" style="max-height: 100px;" ng-if="vm.sponsor.image"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.sponsor.from_date" for="field_from_date">From</label>
+            <input type="datetime-local" class="form-control" name="from_date" id="field_from_date" ng-model="vm.sponsor.from_date" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="backendApp.sponsor.to_date" for="field_to_date">To</label>
+            <input type="datetime-local" class="form-control" name="to_date" id="field_to_date" ng-model="vm.sponsor.to_date" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

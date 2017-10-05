@@ -1,0 +1,68 @@
+<div>
+    <h2 translate="backendApp.sponsor.home.title">Sponsors</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="sponsor.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="backendApp.sponsor.home.createLabel">
+                        Create new Sponsor
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span translate="backendApp.sponsor.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="link"><span translate="backendApp.sponsor.link">Link</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="image"><span translate="backendApp.sponsor.image">Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="from_date"><span translate="backendApp.sponsor.from_date">From</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="to_date"><span translate="backendApp.sponsor.to_date">To</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sponsor in vm.sponsors track by sponsor.id">
+                    <td><a ui-sref="sponsor-detail({id:sponsor.id})">{{sponsor.id}}</a></td>
+                    <td>{{sponsor.name}}</td>
+                    <td>{{sponsor.link}}</td>
+                    <td>{{sponsor.image}}</td>
+                    <td>{{sponsor.from_date}}</td>
+                    <td>{{sponsor.to_date}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="sponsor-detail({id:sponsor.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="sponsor.edit({id:sponsor.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="sponsor.delete({id:sponsor.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.loadAll()"></uib-pager>
+</div>

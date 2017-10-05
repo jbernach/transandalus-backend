@@ -1,0 +1,27 @@
+{
+    "backendApp": {
+        "sponsor" : {
+            "home": {
+                "title": "Patrocinadores",
+                "createLabel": "Crear nuevo Patrocinador",
+                "createOrEditLabel": "Crear o editar Patrocinador",
+                "search": "Buscar Patrocinador"
+            },
+            "created": "Un nuevo Patrocinador ha sido creado con el identificador {{ param }}",
+            "updated": "Un Patrocinador ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Patrocinador ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar al Patrocinador {{ id }}?"
+            },
+            "detail": {
+                "title": "Patrocinador"
+            },
+            "name": "Nombre",
+            "link": "Enlace",
+            "text": "Texto",
+            "image": "URL Imagen",
+            "from_date": "Desde",
+            "to_date": "Hasta"
+        }
+    }
+}

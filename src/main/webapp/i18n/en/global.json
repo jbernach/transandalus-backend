@@ -15,6 +15,7 @@
                 "menuItem": "Menu Items",
                 "volunteer": "Volunteers",
                 "traveler": "Travelers",
+                "sponsor": "Sponsors",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
