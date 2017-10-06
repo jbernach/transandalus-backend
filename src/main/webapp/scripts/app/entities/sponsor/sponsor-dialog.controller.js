@@ -12,19 +12,11 @@
 
         vm.language = $translate.use();
 
-        entity.$promise.then(function(e){
-            e.fromDate = new Date(e.fromDate);
-            e.toDate = new Date(e.toDate);
-        });
-
         vm.sponsor = entity;
 
         vm.load = function(id) {
             Sponsor.get({id : id}, function(result) {
-                result.fromDate = new Date(result.fromDate);
-                result.toDate = new Date(result.toDate);
                 vm.sponsor = result;
-
             });
         };
 

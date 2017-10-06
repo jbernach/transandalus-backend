@@ -14,6 +14,8 @@
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
+                    data.fromDate = new Date(data.fromDate);
+                    data.toDate = new Date(data.toDate);
                     return data;
                 }
             },
