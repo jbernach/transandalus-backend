@@ -76,8 +76,8 @@
                                 link: null,
                                 text: null,
                                 image: null,
-                                from_date: null,
-                                to_date: null,
+                                fromDate: null,
+                                toDate: null,
                                 id: null
                             };
                         }

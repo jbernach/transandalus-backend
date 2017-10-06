@@ -22,8 +22,8 @@
                     <th jh-sort-by="name"><span translate="backendApp.sponsor.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="link"><span translate="backendApp.sponsor.link">Link</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="image"><span translate="backendApp.sponsor.image">Image</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="from_date"><span translate="backendApp.sponsor.from_date">From</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="to_date"><span translate="backendApp.sponsor.to_date">To</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fromDate"><span translate="backendApp.sponsor.from_date">From</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="toDate"><span translate="backendApp.sponsor.to_date">To</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,8 +33,8 @@
                     <td>{{sponsor.name}}</td>
                     <td>{{sponsor.link}}</td>
                     <td>{{sponsor.image}}</td>
-                    <td>{{sponsor.from_date}}</td>
-                    <td>{{sponsor.to_date}}</td>
+                    <td>{{sponsor.fromDate | date }}</td>
+                    <td>{{sponsor.toDate | date }}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
