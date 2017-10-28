@@ -59,7 +59,7 @@ public class KmlService {
 	/**
 	 * Returns the merged KML for all stages.
 	 * This method is cached.
-	 * @param folder Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null.
+	 * @param folder Folder name. The merged KML will only collect elements inside that folder name if folderFilter is not null. ("track" | "marcadores" | "servicios")
 	 * @return
 	 */
 	@Cacheable(cacheNames = "kml")

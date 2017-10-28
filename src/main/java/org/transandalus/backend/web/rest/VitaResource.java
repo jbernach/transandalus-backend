@@ -26,13 +26,13 @@ import com.codahale.metrics.annotation.Timed;
 @RequestMapping("/api")
 public class VitaResource {
 	private final Logger log = LoggerFactory.getLogger(VitaResource.class);
-	
+
 	@Inject
 	private KmlService kmlService;
-	
+
 	/**
 	 * GET /layer/{layerName} -> Get the combined KML of all Stages containing only the contents of the folder "layerName" for each KML.
-	 * @param layerName
+	 * @param layerName "track" | "marcadores" | "servicios"
 	 * @return
 	 */
 	@RequestMapping(value = "/layer/{layerName}", method = RequestMethod.GET, produces = MediaType.ALL_VALUE)
@@ -40,9 +40,9 @@ public class VitaResource {
 	public ResponseEntity<String> getVitaLayer(@PathVariable String layerName,
 			@RequestParam(name = "alt", defaultValue = "false") boolean includeAlternatives,
 			@RequestParam(name = "link", defaultValue = "false") boolean includeLinks){
-		
+
 		String layerKml = kmlService.getAllStagesKml(layerName, includeAlternatives, includeLinks);
-		
+
 		return new ResponseEntity<String>(layerKml, HttpStatus.OK);
 	}
 }
