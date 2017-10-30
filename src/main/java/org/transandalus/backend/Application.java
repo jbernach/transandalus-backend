@@ -1,10 +1,5 @@
 package org.transandalus.backend;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.transandalus.backend.config.Constants;
-import org.transandalus.backend.config.JHipsterProperties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +11,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
-import org.transandalus.backend.service.KmlService;
+import org.transandalus.backend.config.Constants;
+import org.transandalus.backend.config.JHipsterProperties;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -35,9 +31,6 @@ public class Application {
 
     @Inject
     private Environment env;
-
-    @Autowired
-    private ApplicationContext appContext;
 
     /**
      * Initializes backend.
@@ -68,9 +61,6 @@ public class Application {
                     "It should not run with both the 'dev' and 'cloud' profiles at the same time.");
             }
 
-            //if(activeProfiles.contains(Constants.SPRING_PROFILE_PRODUCTION)){
-                firstCacheHits();
-            //}
         }
     }
 
@@ -102,42 +92,5 @@ public class Application {
 
             app.setAdditionalProfiles(Constants.SPRING_PROFILE_DEVELOPMENT);
         }
-    }
-
-
-    /**
-     * Makes some heavy method calls to initialize caches
-     */
-    private void firstCacheHits(){
-        KmlService kmlService = appContext.getBean(KmlService.class);
-
-        int i = 1, total = 12;
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("track", false, false);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("track", false, true);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("track", true, false);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("track", true, true);
-
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("marcadores", false, false);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("marcadores", false, true);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("marcadores", true, false);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("marcadores", true, true);
-
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("servicios", false, false);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("servicios", false, true);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("servicios", true, false);
-        log.info("Caching KML {}/{}...", i++,  total);
-        kmlService.getAllStagesKml("servicios", true, true);
-        log.info("Caching done!");
     }
 }
