@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span translate="backendApp.traveler.detail.title">Traveler</span> {{vm.traveler.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="backendApp.traveler.name">Name</span></dt></dt>
+        <dd>
+            <span>{{vm.traveler.name}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="backendApp.traveler.from">From</span></dt></dt>
+        <dd>
+            <span>{{vm.traveler.from}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="backendApp.traveler.text">Text</span></dt></dt>
+        <dd>
+            <span>{{vm.traveler.text}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="backendApp.traveler.image">Image</span></dt></dt>
+        <dd>
+            <span>{{vm.traveler.image}}</span>
+            <br>
+            <img data-ng-src="{{vm.traveler.image}}" style="max-height: 100px;" ng-if="vm.traveler.image"/>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

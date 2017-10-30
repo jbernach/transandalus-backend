@@ -1,8 +1,5 @@
 package org.transandalus.backend;
 
-import org.transandalus.backend.config.Constants;
-import org.transandalus.backend.config.JHipsterProperties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +11,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
+import org.transandalus.backend.config.Constants;
+import org.transandalus.backend.config.JHipsterProperties;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -61,6 +60,7 @@ public class Application {
                 log.error("You have misconfigured your application! " +
                     "It should not run with both the 'dev' and 'cloud' profiles at the same time.");
             }
+
         }
     }
 
@@ -71,7 +71,9 @@ public class Application {
         SpringApplication app = new SpringApplication(Application.class);
         SimpleCommandLinePropertySource source = new SimpleCommandLinePropertySource(args);
         addDefaultProfile(app, source);
+
         Environment env = app.run(args).getEnvironment();
+
         log.info("Access URLs:\n----------------------------------------------------------\n\t" +
                 "Local: \t\thttp://127.0.0.1:{}\n\t" +
                 "External: \thttp://{}:{}\n----------------------------------------------------------",

@@ -14,6 +14,8 @@
                 "menu": "Menús",
                 "menuItem": "Entradas de menú",
                 "volunteer": "Voluntarios",
+                "traveler": "Viajeros",
+                "sponsor": "Patrocinadores",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

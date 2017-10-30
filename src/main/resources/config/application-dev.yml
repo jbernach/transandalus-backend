@@ -54,7 +54,7 @@ jhipster:
     cache: # Hibernate 2nd level cache, used by CacheConfiguration
         timeToLiveSeconds: 3600
         ehcache:
-            maxBytesLocalHeap: 16M
+            maxBytesLocalHeap: 64M
     datasource: # JHipster-specific configuration, in addition to the standard spring.datasource properties
         cachePrepStmts: true
         prepStmtCacheSize: 250
@@ -74,4 +74,4 @@ jhipster:
             port: 2003
             prefix: backend
     recaptcha:
-      secret: ${RECAPTCHA_SECRET}      
+      secret: ${RECAPTCHA_SECRET}

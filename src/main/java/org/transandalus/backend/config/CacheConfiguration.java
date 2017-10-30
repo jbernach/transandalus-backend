@@ -2,13 +2,17 @@ package org.transandalus.backend.config;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.ehcache.InstrumentedEhcache;
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.bootstrap.BootstrapCacheLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.*;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.util.Assert;
 
 import javax.annotation.PreDestroy;
@@ -32,6 +36,9 @@ public class CacheConfiguration {
 
     @Inject
     private MetricRegistry metricRegistry;
+
+    @Inject
+    private BootstrapCacheLoader bootstrapCacheLoader;
 
     private net.sf.ehcache.CacheManager cacheManager;
 
@@ -66,13 +73,17 @@ public class CacheConfiguration {
                 cacheManager.replaceCacheWithDecoratedCache(cache, decoratedCache);
             }
         }
-        
+
         // Cache for KML content in KmlService
-        cacheManager.addCache("kml");
-        cacheManager.getCache("kml").getCacheConfiguration().setEternal(true);
-        
+        Cache kmlCache = new Cache(new net.sf.ehcache.config.CacheConfiguration("kml", 0));
+        kmlCache.setName("kml");
+        kmlCache.getCacheConfiguration().setEternal(true);
+        kmlCache.setBootstrapCacheLoader(bootstrapCacheLoader);
+
+        cacheManager.addCache(kmlCache);
         EhCacheCacheManager ehCacheManager = new EhCacheCacheManager();
         ehCacheManager.setCacheManager(cacheManager);
+
         return ehCacheManager;
     }
 }
