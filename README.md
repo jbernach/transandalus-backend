@@ -1,6 +1,6 @@
 # TransAndalus backend
 
-Web application for the administration of the data of [https://www.transandalus.org](TransAndalus) new web site.
+Web application for the administration of the data of [TransAndalus](https://www.transandalus.org) new web site.
 
 # Technology used
 
